@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "CommonJS",
+    "target": "es6",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "strict": true,
+    "declaration": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext"],
+    "outDir": "./dist",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@root": ["*"]
+    },
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "./dist"]
+}

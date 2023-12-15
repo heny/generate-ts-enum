@@ -1,12 +1,32 @@
 {
   "name": "generate-ts-enum",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "rebuild": "rm -rf dist && tsc"
+  },
+  "bin": {
+    "gte": "./bin/gte.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.10.4",
+    "@types/yargs": "^17.0.32",
+    "@vitalets/google-translate-api": "^9.0.0",
+    "chalk": "4.1.2",
+    "dayjs": "^1.11.10",
+    "google-translate-api": "link:@types/@vitalets/google-translate-api",
+    "lodash": "^4.17.21",
+    "module-alias": "^2.2.3",
+    "pinyin": "^3.1.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "debug": "^4.3.4"
+  }
 }
