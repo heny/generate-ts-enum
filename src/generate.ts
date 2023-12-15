@@ -5,6 +5,7 @@ import chalk from 'chalk'
 import { translate } from '@vitalets/google-translate-api'
 import flat from 'lodash/flatten'
 import { toJSON, preLog } from './utils'
+import { GenerateOption } from './constants'
 
 // 翻译中文，需要 await 等待
 function translateToEnglish(str) {
@@ -39,8 +40,9 @@ function getVariableName(str) {
 	return str
 }
 
-async function generateEnumsAndMap(input, VariableName) {
-  VariableName = await getVariableName(VariableName)
+async function generateEnumsAndMap(input, option: GenerateOption) {
+  const { name, labelKey, valueKey } = option;
+  const VariableName = await getVariableName(name)
 
   const ValueName = `${VariableName}Value`
   const labelName = `${VariableName}Label`
@@ -49,10 +51,16 @@ async function generateEnumsAndMap(input, VariableName) {
   let statusMap = `export const ${VariableName}Map = [\n`
 
   for (const [index, item] of input.entries()) {
-    const varLabel = await translateToEnglish(item.label)
+    const label = item[labelKey]
+    if(!label || typeof item[valueKey] === 'undefined') {
+      console.log(chalk.red('错误值，请确认您的数组对象是否正确, 添加-h enum 查看帮助'))
+      process.exit(1)
+    }
+
+    const varLabel = await translateToEnglish(label)
     const comma = index === input.length - 1 ? '' : ','
-    statusValueEnum += `  /**\n   * ${item.label}\n   */\n  ${varLabel} = ${item.value}${comma}\n`
-    statusLabelEnum += `  /**\n   * ${item.label}\n   */\n  ${varLabel} = '${item.label}'${comma}\n`
+    statusValueEnum += `  /**\n   * ${label}\n   */\n  ${varLabel} = ${item[valueKey]}${comma}\n`
+    statusLabelEnum += `  /**\n   * ${label}\n   */\n  ${varLabel} = '${label}'${comma}\n`
     statusMap += `  { value: ${ValueName}.${varLabel}, label: ${labelName}.${varLabel} }${comma}\n`
   }
 
@@ -63,7 +71,7 @@ async function generateEnumsAndMap(input, VariableName) {
   console.log(statusLabelEnum + statusValueEnum + statusMap)
 }
 
-export async function byStringGenerate(input, VariableName) {
+export async function byStringGenerate(input, option: GenerateOption) {
   input = toJSON(input)
 
   if (!Array.isArray(input)) {
@@ -71,18 +79,18 @@ export async function byStringGenerate(input, VariableName) {
     return Promise.reject('输入的数组不是一个有效的数组')
   }
 
-  generateEnumsAndMap(input, VariableName)
+  generateEnumsAndMap(input, option)
 }
 
-export async function byFileGenerate(filePath, VariableName) {
+export async function byFileGenerate(filePath, option: GenerateOption) {
   const rootFilePath = path.resolve(process.cwd(), filePath)
 
   // 检查文件是否存在
-  if (fs.existsSync(rootFilePath)) {
+  if (fs.existsSync(rootFilePath) && fs.statSync(rootFilePath).isFile()) {
     console.log('找到了文件：', rootFilePath)
     const content = fs.readFileSync(rootFilePath, 'utf-8')
-    byStringGenerate(content, VariableName)
+    byStringGenerate(content, option)
   } else {
-    console.log(chalk.red('文件不存在：'), rootFilePath)
+    console.log(chalk.red('该文件路径不存在：'), rootFilePath)
   }
 }

@@ -14,3 +14,19 @@ export function toJSON(str: string) {
     return str
   }
 }
+
+export function evalToJSON(str: string) {
+  try {
+    const arr = eval(str);
+    console.log(chalk.blue('输入的内容是：'), arr)
+    if (Array.isArray(arr)) {
+      return arr
+    } else {
+      console.error(chalk.red('输入的数组不是一个有效的数组'))
+      process.exit(1)
+    }
+  } catch (error) {
+    console.error(chalk.red('输入的数组不是一个有效的数组'))
+    process.exit(1)
+  }
+}

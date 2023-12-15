@@ -13,10 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/debug": "^4.1.12",
-    "@types/lodash": "^4.14.202",
-    "@types/node": "^20.10.4",
-    "@types/yargs": "^17.0.32",
     "@vitalets/google-translate-api": "^9.0.0",
     "chalk": "4.1.2",
     "dayjs": "^1.11.10",
@@ -27,6 +23,11 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/inquirer": "^9.0.7",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.10.4",
+    "@types/yargs": "^17.0.32",
     "debug": "^4.3.4"
   }
 }

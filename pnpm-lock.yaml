@@ -5,18 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@types/debug':
-    specifier: ^4.1.12
-    version: 4.1.12
-  '@types/lodash':
-    specifier: ^4.14.202
-    version: 4.14.202
-  '@types/node':
-    specifier: ^20.10.4
-    version: 20.10.4
-  '@types/yargs':
-    specifier: ^17.0.32
-    version: 17.0.32
   '@vitalets/google-translate-api':
     specifier: ^9.0.0
     version: 9.0.0
@@ -26,9 +14,6 @@ dependencies:
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
-  google-translate-api:
-    specifier: link:@types/@vitalets/google-translate-api
-    version: link:@types/@vitalets/google-translate-api
   inquirer:
     specifier: ^5.2.0
     version: 5.2.0
@@ -46,6 +31,21 @@ dependencies:
     version: 17.7.2
 
 devDependencies:
+  '@types/debug':
+    specifier: ^4.1.12
+    version: 4.1.12
+  '@types/inquirer':
+    specifier: ^9.0.7
+    version: 9.0.7
+  '@types/lodash':
+    specifier: ^4.14.202
+    version: 4.14.202
+  '@types/node':
+    specifier: ^20.10.4
+    version: 20.10.4
+  '@types/yargs':
+    specifier: ^17.0.32
+    version: 17.0.32
   debug:
     specifier: ^4.3.4
     version: 4.3.4
@@ -255,25 +255,32 @@ packages:
     resolution: {integrity: sha1-oVXyFpCHGVNBDfS2tvUxh/BQCRc=, tarball: https://registry.npm.taobao.org/@types/debug/download/@types/debug-4.1.12.tgz}
     dependencies:
       '@types/ms': 0.7.34
-    dev: false
+    dev: true
 
   /@types/http-errors@1.8.2:
     resolution: {integrity: sha1-cxW0xMVPgtE/phwijsXC6lzJ4OE=, tarball: https://registry.npm.taobao.org/@types/http-errors/download/@types/http-errors-1.8.2.tgz}
     dev: false
 
+  /@types/inquirer@9.0.7:
+    resolution: {integrity: sha512-Q0zyBupO6NxGRZut/JdmqYKOnN95Eg5V8Csg3PGKkP+FnvsUZx1jAyK7fztIszxxMuoBA6E3KXWvdZVXIpx60g==, tarball: https://registry.npmmirror.com/@types/inquirer/-/inquirer-9.0.7.tgz}
+    dependencies:
+      '@types/through': 0.0.33
+      rxjs: 7.8.1
+    dev: true
+
   /@types/lodash@4.14.202:
     resolution: {integrity: sha1-8J29L7CC1QcXiy8qXH50vXL/mPg=, tarball: https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.202.tgz}
-    dev: false
+    dev: true
 
   /@types/ms@0.7.34:
     resolution: {integrity: sha1-EJZLoN7mrEzUYuJ5W2vr1AcwNDM=, tarball: https://registry.npm.taobao.org/@types/ms/download/@types/ms-0.7.34.tgz}
-    dev: false
+    dev: true
 
   /@types/node@20.10.4:
     resolution: {integrity: sha1-skb9hNVdWxtxv1H5ZL1RRAk0cZg=, tarball: https://registry.npm.taobao.org/@types/node/download/@types/node-20.10.4.tgz}
     dependencies:
       undici-types: 5.26.5
-    dev: false
+    dev: true
 
   /@types/parse-json@4.0.0:
     resolution: {integrity: sha1-L4u0QUNNFjs1+4/9zNcTiSf/uMA=, tarball: https://registry.npm.taobao.org/@types/parse-json/download/@types/parse-json-4.0.0.tgz}
@@ -281,15 +288,21 @@ packages:
     dev: false
     optional: true
 
+  /@types/through@0.0.33:
+    resolution: {integrity: sha512-HsJ+z3QuETzP3cswwtzt2vEIiHBk/dCcHGhbmG5X3ecnwFD/lPrMpliGXxSCg03L9AhrdwA4Oz/qfspkDW+xGQ==, tarball: https://registry.npmmirror.com/@types/through/-/through-0.0.33.tgz}
+    dependencies:
+      '@types/node': 20.10.4
+    dev: true
+
   /@types/yargs-parser@21.0.3:
     resolution: {integrity: sha1-gV4wt4bS6PDc2F/VvPXhoE0AjxU=, tarball: https://registry.npm.taobao.org/@types/yargs-parser/download/@types/yargs-parser-21.0.3.tgz}
-    dev: false
+    dev: true
 
   /@types/yargs@17.0.32:
     resolution: {integrity: sha1-Awd0cjovf6r+v2RfTlpINx3KYik=, tarball: https://registry.npm.taobao.org/@types/yargs/download/@types/yargs-17.0.32.tgz}
     dependencies:
       '@types/yargs-parser': 21.0.3
-    dev: false
+    dev: true
 
   /@vitalets/google-translate-api@9.0.0:
     resolution: {integrity: sha1-4TYBK2AXjWYe/Dj0YH5MX5fid9Q=, tarball: https://registry.npm.taobao.org/@vitalets/google-translate-api/download/@vitalets/google-translate-api-9.0.0.tgz}
@@ -1083,6 +1096,12 @@ packages:
       symbol-observable: 1.0.1
     dev: false
 
+  /rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==, tarball: https://registry.npmmirror.com/rxjs/-/rxjs-7.8.1.tgz}
+    dependencies:
+      tslib: 2.6.2
+    dev: true
+
   /safe-buffer@5.2.1:
     resolution: {integrity: sha1-Hq+fqb2x/dTsdfWPnNtOa3gn7sY=, tarball: https://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.2.1.tgz}
     requiresBuild: true
@@ -1236,9 +1255,13 @@ packages:
     resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=, tarball: https://registry.npm.taobao.org/tr46/download/tr46-0.0.3.tgz}
     dev: false
 
+  /tslib@2.6.2:
+    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==, tarball: https://registry.npmmirror.com/tslib/-/tslib-2.6.2.tgz}
+    dev: true
+
   /undici-types@5.26.5:
     resolution: {integrity: sha1-vNU5iT0AtW6WT9JlekhmsiGmVhc=, tarball: https://registry.npm.taobao.org/undici-types/download/undici-types-5.26.5.tgz}
-    dev: false
+    dev: true
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=, tarball: https://registry.npm.taobao.org/util-deprecate/download/util-deprecate-1.0.2.tgz}
