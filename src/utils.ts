@@ -8,8 +8,7 @@ export function preLog(str: string) {
 
 export function toJSON(str: string) {
   try {
-    const arr = JSON.parse(str)
-    return arr
+    return typeof str === 'string' ? JSON.parse(str) : str
   } catch {
     console.error(chalk.red('转换失败：不是一个有效的数组'))
     return str

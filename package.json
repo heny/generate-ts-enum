@@ -21,6 +21,7 @@
     "chalk": "4.1.2",
     "dayjs": "^1.11.10",
     "google-translate-api": "link:@types/@vitalets/google-translate-api",
+    "inquirer": "^5.2.0",
     "lodash": "^4.17.21",
     "module-alias": "^2.2.3",
     "pinyin": "^3.1.0",
