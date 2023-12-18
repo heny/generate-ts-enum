@@ -48,6 +48,8 @@ function outputToFile(filePath, content) {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true })
   }
+  console.log('写入的路径是：', outputPath)
+  fs.writeFileSync(outputPath, '')
 
   try {
     fs.accessSync(outputPath, fs.constants.W_OK)
@@ -62,6 +64,7 @@ function outputToFile(filePath, content) {
   }
 
   fs.writeFileSync(outputPath, content)
+  console.log(chalk.green(`Done: ${ms(Date.now() - config.startTime)} 🎉🎉🎉`))
 }
 
 async function generateEnumsAndMap(input) {
@@ -102,8 +105,8 @@ async function generateEnumsAndMap(input) {
     outputToFile(output, content)
   } else {
     console.log(content)
+    console.log(chalk.green(`Done: ${ms(Date.now() - config.startTime)} 🎉🎉🎉`))
   }
-  console.log(chalk.green(`Done: ${ms(Date.now() - config.startTime)} 🎉🎉🎉`))
 }
 
 export async function byStringGenerate(input) {
