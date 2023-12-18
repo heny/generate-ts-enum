@@ -1,15 +1,15 @@
-import { byPromptGetData, getName, getLabelKeyValue, promptOutPut } from './prompt'
+import { byPromptGetData, getTitle, getLabelKeyValue, promptOutPut } from './prompt'
 import { byStringGenerate, byFileGenerate } from './generate'
 import config from './config'
 
 async function checkArgv(argv) {
-  let name = argv.name
-  if (!name) {
-    name = await getName()
-    config.setArgv('name', name)
+  let title = argv.title
+  if (!title) {
+    title = await getTitle()
+    config.setArgv('title', title)
   }
-  if (!name) {
-    console.error('缺少必需的选项：-n')
+  if (!title) {
+    console.error('缺少必需的选项：-t')
     process.exit(1)
   }
 

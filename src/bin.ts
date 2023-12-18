@@ -13,9 +13,9 @@ yargs(hideBin(process.argv))
           describe: '输入的数组',
           type: 'string',
         })
-        .option('n', {
-          alias: 'name',
-          describe: '变量名,输入中文会进行翻译',
+        .option('t', {
+          alias: 'title',
+          describe: '标题名,输入中文会进行翻译',
           type: 'string',
         })
         .option('f', {

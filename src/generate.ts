@@ -65,8 +65,13 @@ function outputToFile(filePath, content) {
 }
 
 async function generateEnumsAndMap(input) {
-  const { name, labelKey, valueKey, output } = config.argv
-  const VariableName = await getVariableName(name)
+  if (!input || !input.length || !Array.isArray(input)) {
+    console.log(chalk.red('请检查传入的数组是否存在并且有值!'))
+    process.exit(0)
+  }
+
+  const { title, labelKey, valueKey, output } = config.argv
+  const VariableName = await getVariableName(title)
 
   const ValueName = `${VariableName}Value`
   const labelName = `${VariableName}Label`

@@ -87,16 +87,16 @@ export async function byPromptGetData() {
   }
 }
 
-export async function getName() {
+export async function getTitle() {
   const answers = await prompts([
     {
       type: 'input',
-      name: 'name',
+      name: 'title',
       message: '请输入枚举名字：',
       default: '',
     },
   ])
-  return Promise.resolve(answers.name)
+  return Promise.resolve(answers.title)
 }
 
 export async function getLabelKeyValue(): Promise<{ labelKey: string; valueKey: string }> {

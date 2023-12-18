@@ -1,6 +1,6 @@
 export interface Argv {
   array?: string
-  name: string
+  title: string
   file?: string
   output?: string
   labelKey: string
