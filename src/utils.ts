@@ -17,7 +17,7 @@ export function toJSON(str: string) {
 
 export function evalToJSON(str: string) {
   try {
-    const arr = eval(str);
+    const arr = eval(str)
     console.log(chalk.blue('输入的内容是：'), arr)
     if (Array.isArray(arr)) {
       return arr

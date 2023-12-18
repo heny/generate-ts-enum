@@ -4,6 +4,7 @@ import pinyin from 'pinyin'
 import chalk from 'chalk'
 import { translate } from '@vitalets/google-translate-api'
 import flat from 'lodash/flatten'
+import ms from 'ms'
 import { evalToJSON, preLog } from './utils'
 import config from './config'
 
@@ -97,7 +98,7 @@ async function generateEnumsAndMap(input) {
   } else {
     console.log(content)
   }
-  console.log(chalk.green(`Done: ${Date.now() - config.startTime}ms 🎉🎉🎉`))
+  console.log(chalk.green(`Done: ${ms(Date.now() - config.startTime)} 🎉🎉🎉`))
 }
 
 export async function byStringGenerate(input) {
