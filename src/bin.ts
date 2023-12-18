@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import { init } from '.'
+import { execFn } from '.'
 
 yargs(hideBin(process.argv))
   .command(
@@ -16,11 +16,21 @@ yargs(hideBin(process.argv))
         .option('n', {
           alias: 'name',
           describe: '变量名,输入中文会进行翻译',
-          type: 'string'
+          type: 'string',
         })
         .option('f', {
           alias: 'file',
           describe: '指定文件',
+          type: 'string',
+        })
+        .option('of', {
+          alias: 'hasOutPutFile',
+          describe: '是否需要输出文件',
+          type: 'boolean',
+        })
+        .option('o', {
+          alias: 'output',
+          describe: '输出文件路径',
           type: 'string',
         })
         .option('labelKey', {
@@ -32,8 +42,8 @@ yargs(hideBin(process.argv))
           group: 'Options:',
           prompt: {
             message: '请输入要转换的 label key:',
-            type: 'string'
-          }
+            type: 'string',
+          },
         })
         .option('valueKey', {
           describe: '要转换的value key',
@@ -44,8 +54,8 @@ yargs(hideBin(process.argv))
           group: 'Options:',
           prompt: {
             message: '请输入要转换的 value key:',
-            type: 'string'
-          }
+            type: 'string',
+          },
         })
         .option('k', {
           alias: 'inputKey',
@@ -53,7 +63,7 @@ yargs(hideBin(process.argv))
           type: 'boolean',
         })
     },
-    init
+    execFn
   )
   .alias('v', 'version')
   .fail((msg, err, yargs) => {

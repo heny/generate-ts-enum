@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import dayjs from 'dayjs'
 
 export function preLog(str: string) {
-  const logPrefix = `[${chalk.blueBright('web')}/${chalk.blueBright(dayjs().format('HH:mm:ss'))}]:`
+  const logPrefix = `[${chalk.blueBright(dayjs().format('HH:mm:ss'))}]:`
   console.log(logPrefix, str)
 }
 
