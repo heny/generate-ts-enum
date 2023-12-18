@@ -14,9 +14,9 @@ async function checkArgv(argv) {
   }
 
   // 校验 label Key
-  let labelKey = argv.labelKey
-  let valueKey = argv.valueKey
-  if (argv.inputKey || !labelKey || !valueKey) {
+  const curLabelKey = argv.labelKey
+  const curValueKey = argv.valueKey
+  if (argv.inputKey || !curLabelKey || !curValueKey) {
     const { labelKey, valueKey } = await getLabelKeyValue()
     config.setArgv('labelKey', labelKey)
     config.setArgv('valueKey', valueKey)
