@@ -54,6 +54,25 @@ class Prompt {
           type: 'input',
           name: 'content',
           message: '请输入数组对象：',
+          validate: (input) => {
+            try {
+              const array = eval(input)
+              if (Array.isArray(array) && array.length > 0) {
+                const item = array[0]
+                if (
+                  typeof item[config.argv.labelKey] === 'undefined' ||
+                  typeof item[config.argv.valueKey] === 'undefined'
+                ) {
+                  return '请输入正确的key!'
+                }
+                return true
+              } else {
+                return '请输入一个非空的数组!'
+              }
+            } catch (e) {
+              return '输入的不是一个有效的数组!'
+            }
+          },
         },
       ])
       config.setArgv('array', inputAnswers.content)

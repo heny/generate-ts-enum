@@ -12,6 +12,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heny/generate-ts-enum.git"
+  },
   "dependencies": {
     "@vitalets/google-translate-api": "^9.0.0",
     "chalk": "4.1.2",

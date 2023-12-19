@@ -86,7 +86,11 @@ class EnumGenerator {
       }
       const varLabel = await this.translateToEnglish(label)
       const comma = index === input.length - 1 ? '' : ','
-      statusValueEnum += `  /**\n   * ${label}\n   */\n  ${varLabel} = ${item[valueKey]}${comma}\n`
+      if (typeof item[valueKey] === 'string') {
+        statusValueEnum += `  /**\n   * ${label}\n   */\n  ${varLabel} = '${item[valueKey]}'${comma}\n`
+      } else {
+        statusValueEnum += `  /**\n   * ${label}\n   */\n  ${varLabel} = ${item[valueKey]}${comma}\n`
+      }
       statusLabelEnum += `  /**\n   * ${label}\n   */\n  ${varLabel} = '${label}'${comma}\n`
       statusMap += `  { value: ${ValueName}.${varLabel}, label: ${labelName}.${varLabel} }${comma}\n`
     }
