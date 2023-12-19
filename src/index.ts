@@ -1,4 +1,10 @@
-import { byPromptGetData, getTitle, getLabelKeyValue, promptOutPut } from './prompt'
+import {
+  byPromptGetData,
+  getTitle,
+  getLabelKeyValue,
+  promptOutPut,
+  promptOutputType,
+} from './prompt'
 import { byStringGenerate, byFileGenerate } from './generate'
 import config from './config'
 
@@ -31,6 +37,7 @@ export async function execFn(argv) {
   config.setStartTime(Date.now())
   config.setFullArgv(argv)
   await checkArgv(argv)
+  await promptOutputType()
 
   if (argv.file) {
     byFileGenerate(argv.file)

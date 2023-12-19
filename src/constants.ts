@@ -12,3 +12,7 @@ export interface Argv {
 export interface IConfig {
   argv: Argv
 }
+
+export interface Store {
+  outputType: Array<'label' | 'value' | 'mapping'>
+}

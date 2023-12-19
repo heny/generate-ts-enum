@@ -49,6 +49,22 @@ function outputToFile(filePath, content) {
   console.log(chalk.green(`Done: ${ms(Date.now() - config.startTime)} 🎉🎉🎉`))
 }
 
+function outputContent(label, value, mapping) {
+  const types = config.getStore('outputType')
+  let result = ''
+  // 按照以下的顺序加
+  if (types.includes('label')) {
+    result += label
+  }
+  if (types.includes('value')) {
+    result += value
+  }
+  if (types.includes('mapping')) {
+    result += mapping
+  }
+  return result
+}
+
 async function generateEnumsAndMap(input) {
   if (!input || !input.length || !Array.isArray(input)) {
     console.log(chalk.red('请检查传入的数组是否存在并且有值!'))
@@ -82,7 +98,7 @@ async function generateEnumsAndMap(input) {
   statusLabelEnum += '}\n'
   statusMap += ']\n'
 
-  const content = statusLabelEnum + statusValueEnum + statusMap
+  const content = outputContent(statusLabelEnum, statusValueEnum, statusMap)
   if (output) {
     outputToFile(output, content)
   } else {

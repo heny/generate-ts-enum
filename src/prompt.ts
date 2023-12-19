@@ -144,15 +144,16 @@ export async function promptOutPut(): Promise<void> {
       when: (answers) => answers.hasOutPutFile,
       validate: async (input) => {
         const fullPath = path.resolve(input)
+        const dirPath = path.dirname(fullPath)
         if (path.extname(fullPath) !== '.ts') {
           return '输出文件必须是一个 TypeScript (.ts) 文件'
         }
 
         try {
-          await fs.access(fullPath, fs.constants.W_OK)
+          await fs.access(dirPath, fs.constants.W_OK)
         } catch (err) {
-          return `没有写入权限，请手动赋予写入权限，例如使用命令 \`${chalk.cyan(
-            `chmod +w ${fullPath}`
+          return `没有写入权限，请手动赋予写入权限，例如使用命令 \`chmod +w ${chalk.cyan(
+            dirPath
           )}\``
         }
 
@@ -163,4 +164,20 @@ export async function promptOutPut(): Promise<void> {
   if (answers.hasOutPutFile) {
     config.setArgv('output', answers.output)
   }
+}
+
+export async function promptOutputType() {
+  const answers = await prompts<{ outputContent: Array<'label' | 'value' | 'mapping'> }>([
+    {
+      type: 'checkbox',
+      name: 'outputContent',
+      message: '请选择生成输出的内容：',
+      choices: [
+        { name: '文案', value: 'label', checked: true },
+        { name: '值', value: 'value', checked: true },
+        { name: '映射', value: 'mapping', checked: true },
+      ],
+    },
+  ])
+  config.setStore('outputType', answers.outputContent)
 }
