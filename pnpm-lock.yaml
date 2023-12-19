@@ -14,15 +14,15 @@ dependencies:
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
+  fs-extra:
+    specifier: ^11.2.0
+    version: 11.2.0
   inquirer:
     specifier: ^5.2.0
     version: 5.2.0
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
-  module-alias:
-    specifier: ^2.2.3
-    version: 2.2.3
   ms:
     specifier: ^2.1.3
     version: 2.1.3
@@ -601,6 +601,15 @@ packages:
       escape-string-regexp: 1.0.5
     dev: false
 
+  /fs-extra@11.2.0:
+    resolution: {integrity: sha1-5w4X361kIyKH0BkpOZ4Op8hrDls=, tarball: fs-extra/download/fs-extra-11.2.0.tgz}
+    engines: {node: '>=14.14'}
+    dependencies:
+      graceful-fs: 4.2.11
+      jsonfile: 6.1.0
+      universalify: 2.0.1
+    dev: false
+
   /fs-minipass@2.1.0:
     resolution: {integrity: sha1-f1A2/b8SxjwWkZDL5BmchSJx+fs=, tarball: https://registry.npm.taobao.org/fs-minipass/download/fs-minipass-2.1.0.tgz}
     engines: {node: '>= 8'}
@@ -656,6 +665,10 @@ packages:
       path-is-absolute: 1.0.1
     dev: false
     optional: true
+
+  /graceful-fs@4.2.11:
+    resolution: {integrity: sha1-QYPk6L8Iu24Fu7L30uDI9xLKQOM=, tarball: graceful-fs/download/graceful-fs-4.2.11.tgz}
+    dev: false
 
   /has-flag@3.0.0:
     resolution: {integrity: sha1-tdRU3CGZriJWmfNGfloH87lVuv0=, tarball: https://registry.npm.taobao.org/has-flag/download/has-flag-3.0.0.tgz}
@@ -790,6 +803,14 @@ packages:
     dev: false
     optional: true
 
+  /jsonfile@6.1.0:
+    resolution: {integrity: sha1-vFWyY0eTxnnsZAMJTrE2mKbsCq4=, tarball: jsonfile/download/jsonfile-6.1.0.tgz}
+    dependencies:
+      universalify: 2.0.1
+    optionalDependencies:
+      graceful-fs: 4.2.11
+    dev: false
+
   /keypress@0.1.0:
     resolution: {integrity: sha1-SjGI1CkbZrT2XtuZ+AaqmuKTWSo=, tarball: https://registry.npm.taobao.org/keypress/download/keypress-0.1.0.tgz}
     dev: false
@@ -868,10 +889,6 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
-
-  /module-alias@2.2.3:
-    resolution: {integrity: sha1-7C6Fxolzvaarcc58k7dj7JYFMiE=, tarball: https://registry.npm.taobao.org/module-alias/download/module-alias-2.2.3.tgz}
-    dev: false
 
   /ms@2.1.2:
     resolution: {integrity: sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=, tarball: ms/download/ms-2.1.2.tgz}
@@ -1269,6 +1286,11 @@ packages:
   /undici-types@5.26.5:
     resolution: {integrity: sha1-vNU5iT0AtW6WT9JlekhmsiGmVhc=, tarball: https://registry.npm.taobao.org/undici-types/download/undici-types-5.26.5.tgz}
     dev: true
+
+  /universalify@2.0.1:
+    resolution: {integrity: sha1-Fo78IYCWTmOG0GHglN9hr+I5sY0=, tarball: universalify/download/universalify-2.0.1.tgz}
+    engines: {node: '>= 10.0.0'}
+    dev: false
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=, tarball: https://registry.npm.taobao.org/util-deprecate/download/util-deprecate-1.0.2.tgz}

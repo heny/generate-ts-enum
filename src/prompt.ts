@@ -1,7 +1,8 @@
 import inquirer, { Answers, QuestionCollection } from 'inquirer'
 import os from 'os'
 import path from 'path'
-import fs from 'fs'
+import fs from 'fs-extra'
+import chalk from 'chalk'
 import { spawn } from 'child_process'
 import { byStringGenerate, byFileGenerate } from './generate'
 import config from './config'
@@ -21,10 +22,10 @@ async function fetchVimContent(): Promise<string> {
       stdio: 'inherit', // 这将会把子进程的stdio连接到父进程
     })
 
-    vim.on('exit', () => {
+    vim.on('exit', async () => {
       // 读取临时文件的内容之后并删除
-      const text = fs.readFileSync(tempFile, 'utf-8')
-      fs.unlinkSync(tempFile)
+      const text = await fs.readFile(tempFile, 'utf-8')
+      await fs.remove(tempFile)
 
       resolve(text)
     })
@@ -63,6 +64,15 @@ export async function byPromptGetData() {
         type: 'input',
         name: 'filePath',
         message: '请输入文件的路径:',
+        validate: async (input) => {
+          if (path.extname(input) !== '.json') {
+            return '输入文件必须是一个 Json (.json) 文件'
+          }
+          if (!(await fs.pathExists(input))) {
+            return '输入的文件不存在, 请重新输入'
+          }
+          return true
+        },
       },
     ])
     config.setArgv('file', fileAnswers.filePath)
@@ -132,6 +142,22 @@ export async function promptOutPut(): Promise<void> {
       name: 'output',
       message: '请输入输出文件的路径:',
       when: (answers) => answers.hasOutPutFile,
+      validate: async (input) => {
+        const fullPath = path.resolve(input)
+        if (path.extname(fullPath) !== '.ts') {
+          return '输出文件必须是一个 TypeScript (.ts) 文件'
+        }
+
+        try {
+          await fs.access(fullPath, fs.constants.W_OK)
+        } catch (err) {
+          return `没有写入权限，请手动赋予写入权限，例如使用命令 \`${chalk.cyan(
+            `chmod +w ${fullPath}`
+          )}\``
+        }
+
+        return true
+      },
     },
   ])
   if (answers.hasOutPutFile) {

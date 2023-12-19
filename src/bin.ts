@@ -1,6 +1,8 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
+import path from 'path'
 import { execFn } from '.'
+import chalk from 'chalk'
 
 yargs(hideBin(process.argv))
   .command(
@@ -61,6 +63,17 @@ yargs(hideBin(process.argv))
           alias: 'inputKey',
           describe: '手动输入label value key',
           type: 'boolean',
+        })
+        .check((argv) => {
+          if (argv.o && path.extname(argv.o) !== '.ts') {
+            console.log(chalk.red('输出文件必须是一个 TypeScript (.ts) 文件'))
+            process.exit(1)
+          }
+          if (argv.f && path.extname(argv.f) !== '.json') {
+            console.log(chalk.red('输入文件必须是一个 Json (.json) 文件'))
+            process.exit(1)
+          }
+          return true
         })
     },
     execFn

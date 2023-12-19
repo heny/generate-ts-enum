@@ -1,5 +1,5 @@
 import path from 'path'
-import fs from 'fs'
+import fs from 'fs-extra'
 import pinyin from 'pinyin'
 import chalk from 'chalk'
 import { translate } from '@vitalets/google-translate-api'
@@ -43,27 +43,9 @@ function getVariableName(str) {
 
 function outputToFile(filePath, content) {
   const outputPath = path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath)
-  const outputDir = path.dirname(outputPath)
-
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true })
-  }
   console.log('写入的路径是：', outputPath)
-  fs.writeFileSync(outputPath, '')
 
-  try {
-    fs.accessSync(outputPath, fs.constants.W_OK)
-  } catch (err) {
-    console.log(chalk.red('没有写入权限。'))
-    return
-  }
-
-  if (path.extname(outputPath) !== '.ts') {
-    console.log(chalk.red('文件不是 TypeScript 文件。'))
-    return
-  }
-
-  fs.writeFileSync(outputPath, content)
+  fs.outputFileSync(outputPath, content)
   console.log(chalk.green(`Done: ${ms(Date.now() - config.startTime)} 🎉🎉🎉`))
 }
 
@@ -124,9 +106,9 @@ export async function byFileGenerate(filePath) {
   const rootFilePath = path.resolve(process.cwd(), filePath)
 
   // 检查文件是否存在
-  if (fs.existsSync(rootFilePath) && fs.statSync(rootFilePath).isFile()) {
+  if (await fs.pathExists(rootFilePath)) {
     console.log('找到了文件：', rootFilePath)
-    const content = fs.readFileSync(rootFilePath, 'utf-8')
+    const content = await fs.readFile(rootFilePath, 'utf-8')
     byStringGenerate(content)
   } else {
     console.log(chalk.red('该文件路径不存在：'), rootFilePath)
