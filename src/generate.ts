@@ -12,6 +12,10 @@ const cnTextReg = /[\u4e00-\u9fa5]/
 class EnumGenerator {
   // 翻译中文，需要 await 等待
   async translateToEnglish(str) {
+    if (typeof str !== 'string') {
+      return str
+    }
+
     if (!cnTextReg.test(str)) {
       return toUpperCase(str.split(' '))
     }
