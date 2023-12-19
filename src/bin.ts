@@ -1,7 +1,7 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import path from 'path'
-import { execFn } from '.'
+import ExecutorInstance from '.'
 import chalk from 'chalk'
 
 yargs(hideBin(process.argv))
@@ -76,7 +76,7 @@ yargs(hideBin(process.argv))
           return true
         })
     },
-    execFn
+    ExecutorInstance.execFn
   )
   .alias('v', 'version')
   .fail((msg, err, yargs) => {

@@ -1,53 +1,51 @@
-import {
-  byPromptGetData,
-  getTitle,
-  getLabelKeyValue,
-  promptOutPut,
-  promptOutputType,
-} from './prompt'
-import { byStringGenerate, byFileGenerate } from './generate'
+import PromptInstance from './prompt'
+import GenerateInstance from './generate'
 import config from './config'
 
-async function checkArgv(argv) {
-  let title = argv.title
-  if (!title) {
-    title = await getTitle()
-    config.setArgv('title', title)
-  }
-  if (!title) {
-    console.error('缺少必需的选项：-t')
-    process.exit(1)
+class Executor {
+  constructor() {
+    this.checkArgv = this.checkArgv.bind(this)
+    this.execFn = this.execFn.bind(this)
   }
 
-  // 校验 label Key
-  const curLabelKey = argv.labelKey
-  const curValueKey = argv.valueKey
-  if (argv.inputKey || !curLabelKey || !curValueKey) {
-    const { labelKey, valueKey } = await getLabelKeyValue()
-    config.setArgv('labelKey', labelKey)
-    config.setArgv('valueKey', valueKey)
+  async checkArgv(argv) {
+    let title = argv.title
+    if (!title) {
+      title = await PromptInstance.getTitle()
+      config.setArgv('title', title)
+    }
+    if (!title) {
+      console.error('缺少必需的选项：-t')
+      process.exit(1)
+    }
+    // 校验 label Key
+    const curLabelKey = argv.labelKey
+    const curValueKey = argv.valueKey
+    if (argv.inputKey || !curLabelKey || !curValueKey) {
+      const { labelKey, valueKey } = await PromptInstance.getLabelKeyValue()
+      config.setArgv('labelKey', labelKey)
+      config.setArgv('valueKey', valueKey)
+    }
+    if (!argv.hasOutPutFile && !argv.output) {
+      await PromptInstance.promptOutPut()
+    }
   }
 
-  if (!argv.hasOutPutFile && !argv.output) {
-    await promptOutPut()
+  async execFn(argv) {
+    config.setStartTime(Date.now())
+    config.setFullArgv(argv)
+    await this.checkArgv(argv)
+    await PromptInstance.promptOutputType()
+    if (argv.file) {
+      GenerateInstance.byFileGenerate(argv.file)
+    }
+    if (argv.array) {
+      GenerateInstance.byStringGenerate(argv.array)
+    }
+    if (!argv.file && !argv.array) {
+      PromptInstance.byPromptGetData()
+    }
   }
 }
 
-export async function execFn(argv) {
-  config.setStartTime(Date.now())
-  config.setFullArgv(argv)
-  await checkArgv(argv)
-  await promptOutputType()
-
-  if (argv.file) {
-    byFileGenerate(argv.file)
-  }
-
-  if (argv.array) {
-    byStringGenerate(argv.array)
-  }
-
-  if (!argv.file && !argv.array) {
-    byPromptGetData()
-  }
-}
+export default new Executor()

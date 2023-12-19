@@ -1,6 +1,12 @@
 import chalk from 'chalk'
 import dayjs from 'dayjs'
 
+export function flat(arr) {
+  return arr.reduce(function (prev, curr) {
+    return prev.concat(Array.isArray(curr) ? flat(curr) : curr)
+  }, [])
+}
+
 export function preLog(str: string) {
   const logPrefix = `[${chalk.blueBright(dayjs().format('HH:mm:ss'))}]:`
   console.log(logPrefix, str)
@@ -29,4 +35,12 @@ export function evalToJSON(str: string) {
     console.error(chalk.red('输入的数组不是一个有效的数组'))
     process.exit(1)
   }
+}
+
+// 将数组拼接成upper-case
+export function toUpperCase(arr) {
+  arr = flat(arr)
+  return arr.reduce((result, item) => {
+    return result + item.charAt(0).toUpperCase() + item.slice(1)
+  }, '')
 }
