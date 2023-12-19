@@ -30,6 +30,11 @@ class Prompt {
   }
 
   async byPromptGetData() {
+    console.log(
+      chalk.blue(
+        `当前对象的labelKey: ${config.argv.labelKey}, valueKey: ${config.argv.valueKey}, 加 -k 可自定义`
+      )
+    )
     const answers = await this.prompts<{ dataChoice: 'file' | 'vim' | 'input' }>([
       {
         type: 'list',
@@ -100,7 +105,7 @@ class Prompt {
         type: 'input',
         name: 'title',
         message: '请输入枚举名字：',
-        default: '',
+        default: 'Status',
       },
     ])
     return Promise.resolve(answers.title)

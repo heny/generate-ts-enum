@@ -7,9 +7,15 @@ import ms from 'ms'
 import { evalToJSON, preLog, toUpperCase } from './utils'
 import config from './config'
 
+const cnTextReg = /[\u4e00-\u9fa5]/
+
 class EnumGenerator {
   // 翻译中文，需要 await 等待
   async translateToEnglish(str) {
+    if (!cnTextReg.test(str)) {
+      return toUpperCase(str.split(' '))
+    }
+
     preLog(`开始翻译：${str}`)
     return translate(str, { to: 'en' })
       .then((res) => toUpperCase(res.text.split(' ')))
@@ -27,7 +33,7 @@ class EnumGenerator {
 
   // 获取变量名字，如果传入的是中文，则直接翻译
   getVariableName(str) {
-    if (/[\u4e00-\u9fa5]/.test(str)) {
+    if (cnTextReg.test(str)) {
       return this.translateToEnglish(str)
     }
     return str
@@ -69,13 +75,13 @@ class EnumGenerator {
     const labelName = `${VariableName}Label`
     let statusValueEnum = `/**\n * 值\n */\nexport const enum ${ValueName} {\n`
     let statusLabelEnum = `/**\n * 文案\n */\nexport const enum ${labelName} {\n`
-    let statusMap = `/**\n * 状态List\n */\nexport const ${VariableName}Map = [\n`
+    let statusMap = `/**\n * 状态List\n */\nexport const ${VariableName}List = [\n`
 
     for (let index = 0; index < input.length; index++) {
       const item = input[index]
       const label = item[labelKey]
       if (!label || typeof item[valueKey] === 'undefined') {
-        console.log(chalk.red('错误值，请确认您的数组对象是否正确, 添加-h enum 查看帮助'))
+        console.log(chalk.red('错误值，请确认您的数组对象是否正确, 添加 -h 查看帮助'))
         process.exit(1)
       }
       const varLabel = await this.translateToEnglish(label)
