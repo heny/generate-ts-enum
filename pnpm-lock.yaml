@@ -1,7 +1,7 @@
 lockfileVersion: '6.0'
 
 settings:
-  autoInstallPeers: false
+  autoInstallPeers: true
   excludeLinksFromLockfile: false
 
 dependencies:
@@ -116,7 +116,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-android-arm-eabi@1.7.2:
-    resolution: {integrity: sha1-BtEP7vmgcYtLPwey1/FhwZNDm5Y=, tarball: '@node-rs/jieba-android-arm-eabi/download/@node-rs/jieba-android-arm-eabi-1.7.2.tgz'}
+    resolution: {integrity: sha512-FyDHRNSRIHOQO7S6Q4RwuGffnnnuNwaXPH7K8WqSzifEY+zFIaSPcNqrZHrnqyeXc4JiYpBIHeP+0Mkf1kIGRA==, tarball: https://registry.npmmirror.com/@node-rs/jieba-android-arm-eabi/-/jieba-android-arm-eabi-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [arm]
     os: [android]
@@ -125,7 +125,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-android-arm64@1.7.2:
-    resolution: {integrity: sha1-EIMKDVnoT6oaUsD+pWGO+bHVrAM=, tarball: '@node-rs/jieba-android-arm64/download/@node-rs/jieba-android-arm64-1.7.2.tgz'}
+    resolution: {integrity: sha512-z0UEZCGrAX/IiarhuDMsEIDZBS77UZv4SQyL/J48yrsbWKbb2lJ1vCrYxXIWqwp6auXHEu4r1O/pMriDAcEnPg==, tarball: https://registry.npmmirror.com/@node-rs/jieba-android-arm64/-/jieba-android-arm64-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [android]
@@ -134,7 +134,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-darwin-arm64@1.7.2:
-    resolution: {integrity: sha1-cOa59tMWeBe4qCWcSeCqZpP9SHE=, tarball: '@node-rs/jieba-darwin-arm64/download/@node-rs/jieba-darwin-arm64-1.7.2.tgz'}
+    resolution: {integrity: sha512-M2cHIWRaaOmXGKy446SH2+Y2PzREaI2oYznPbg55wYEdioUp01YS/2WRG8CaoCKEj0aUocA7MFM2vVcoIAsbQw==, tarball: https://registry.npmmirror.com/@node-rs/jieba-darwin-arm64/-/jieba-darwin-arm64-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -143,7 +143,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-darwin-x64@1.7.2:
-    resolution: {integrity: sha1-vyG+mHWjCl+tQDCJOzCImTgx5U8=, tarball: '@node-rs/jieba-darwin-x64/download/@node-rs/jieba-darwin-x64-1.7.2.tgz'}
+    resolution: {integrity: sha512-euDawBU2FxB0CGTR803BA6WABsiicIrqa61z2AFFDPkJCDrauEM0jbMg3GDKLAvbaLbZ1Etu3QNN5xyroqp4Qw==, tarball: https://registry.npmmirror.com/@node-rs/jieba-darwin-x64/-/jieba-darwin-x64-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -152,7 +152,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-freebsd-x64@1.7.2:
-    resolution: {integrity: sha1-8XMInjQTW8phPO18gWrZ/vwCPDk=, tarball: '@node-rs/jieba-freebsd-x64/download/@node-rs/jieba-freebsd-x64-1.7.2.tgz'}
+    resolution: {integrity: sha512-vXCaYxPb90d/xTBVG+ZZXrFLXsO2719pZSyiZCL2tey+UY28U7MOoK6394Wwmf0FCB/eRTQMCKjVIUDi+IRMUg==, tarball: https://registry.npmmirror.com/@node-rs/jieba-freebsd-x64/-/jieba-freebsd-x64-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [freebsd]
@@ -161,7 +161,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-linux-arm-gnueabihf@1.7.2:
-    resolution: {integrity: sha1-MHkjQBukm7TihjmrKVTEvjNi+Ac=, tarball: '@node-rs/jieba-linux-arm-gnueabihf/download/@node-rs/jieba-linux-arm-gnueabihf-1.7.2.tgz'}
+    resolution: {integrity: sha512-HTep79XlJYO3KRYZ2kJChG9HnYr1DKSQTB+HEYWKLK0ifphqybcxGNLAdH0S4dViG2ciD0+iN/refgtqZEidpw==, tarball: https://registry.npmmirror.com/@node-rs/jieba-linux-arm-gnueabihf/-/jieba-linux-arm-gnueabihf-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [arm]
     os: [linux]
@@ -170,7 +170,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-linux-arm64-gnu@1.7.2:
-    resolution: {integrity: sha1-Ovdyc9hLPk0VitO/2qI+Uj77j84=, tarball: '@node-rs/jieba-linux-arm64-gnu/download/@node-rs/jieba-linux-arm64-gnu-1.7.2.tgz'}
+    resolution: {integrity: sha512-P8QJdQydOVewL1MIqYiRpI7LOfrRQag+p4/hwExe+YXH8C7DOrR8rWJD/7XNRTbpOimlHq1UN/e+ZzhxQF/cLw==, tarball: https://registry.npmmirror.com/@node-rs/jieba-linux-arm64-gnu/-/jieba-linux-arm64-gnu-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -180,7 +180,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-linux-arm64-musl@1.7.2:
-    resolution: {integrity: sha1-xs/m7rFjaDAy5iZRNrhxOpsop5M=, tarball: '@node-rs/jieba-linux-arm64-musl/download/@node-rs/jieba-linux-arm64-musl-1.7.2.tgz'}
+    resolution: {integrity: sha512-WjnN0hmDvTXb2h3hMW5VnUGkK1xaqhs+WHfMMilau55+YN+YOYALKZ0TeBY4BapClLuBx54wqwmBX+B4hAXunQ==, tarball: https://registry.npmmirror.com/@node-rs/jieba-linux-arm64-musl/-/jieba-linux-arm64-musl-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -190,7 +190,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-linux-x64-gnu@1.7.2:
-    resolution: {integrity: sha1-D16iSZpk0/LmObU41/94CV/QR3o=, tarball: '@node-rs/jieba-linux-x64-gnu/download/@node-rs/jieba-linux-x64-gnu-1.7.2.tgz'}
+    resolution: {integrity: sha512-gBXds/DwNSA6lNUxJjL6WIaNT6pnlM5juUgV/krLLkBJ8vXpOrQ07p0rrK1tnigz9b20xhsHaFRSwED1Y8zeXw==, tarball: https://registry.npmmirror.com/@node-rs/jieba-linux-x64-gnu/-/jieba-linux-x64-gnu-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -200,7 +200,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-linux-x64-musl@1.7.2:
-    resolution: {integrity: sha1-xg6k8/TnICIIqmGzGN0aNPgnNLU=, tarball: '@node-rs/jieba-linux-x64-musl/download/@node-rs/jieba-linux-x64-musl-1.7.2.tgz'}
+    resolution: {integrity: sha512-tNVD3SMuG5zAj7+bLS2Enio3zR7BPxi3PhQtpQ+Hv83jajIcN46QQ0EdoMFz/aB+hkQ9PlLAstu+VREFegs5EA==, tarball: https://registry.npmmirror.com/@node-rs/jieba-linux-x64-musl/-/jieba-linux-x64-musl-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -210,7 +210,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-win32-arm64-msvc@1.7.2:
-    resolution: {integrity: sha1-PMSheBEV0oLTnZj25AOYcsPGPIQ=, tarball: '@node-rs/jieba-win32-arm64-msvc/download/@node-rs/jieba-win32-arm64-msvc-1.7.2.tgz'}
+    resolution: {integrity: sha512-/e1iQ0Dh02lGPNCYTU/H3cfIsWydaGRzZ3TDj6GfWrxkWqXORL98x/VJ/C/uKLpc7GSLLd9ygyZG7SOAfKe2tA==, tarball: https://registry.npmmirror.com/@node-rs/jieba-win32-arm64-msvc/-/jieba-win32-arm64-msvc-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -219,7 +219,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-win32-ia32-msvc@1.7.2:
-    resolution: {integrity: sha1-V0aVxgK+LDjMSXCLSCm1zwV05LY=, tarball: '@node-rs/jieba-win32-ia32-msvc/download/@node-rs/jieba-win32-ia32-msvc-1.7.2.tgz'}
+    resolution: {integrity: sha512-cYjA6YUiOwtuEzWErvwMMt/RETNWQDLcmAaiHA8ohsa6c0eB0kRJlQCc683tlaczZxqroY/7C9mxgJNGvoGRbw==, tarball: https://registry.npmmirror.com/@node-rs/jieba-win32-ia32-msvc/-/jieba-win32-ia32-msvc-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
@@ -228,7 +228,7 @@ packages:
     optional: true
 
   /@node-rs/jieba-win32-x64-msvc@1.7.2:
-    resolution: {integrity: sha1-hHsjxuLLJV4JXZkMeLZ4+nPlGKY=, tarball: '@node-rs/jieba-win32-x64-msvc/download/@node-rs/jieba-win32-x64-msvc-1.7.2.tgz'}
+    resolution: {integrity: sha512-2M+Um3woFF17sa8VBYQQ6E5PNMe9Kf9fdzmeDh/GzuNHXlxW4LyK9VTV8zchIv/bDNAR5Z85kfW4wASULUxvFQ==, tarball: https://registry.npmmirror.com/@node-rs/jieba-win32-x64-msvc/-/jieba-win32-x64-msvc-1.7.2.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -237,7 +237,7 @@ packages:
     optional: true
 
   /@node-rs/jieba@1.7.2:
-    resolution: {integrity: sha1-LdzPsSCMAOmmczsrox/RhkXgdnc=, tarball: '@node-rs/jieba/download/@node-rs/jieba-1.7.2.tgz'}
+    resolution: {integrity: sha512-zGto08NDU+KWm670qVHYGTb0YTEJ0A97dwH3WCnnhyRYMqTbOXKC6OwTc/cjzfSJP1UDBSar9Ug9BlmWmEThWg==, tarball: https://registry.npmmirror.com/@node-rs/jieba/-/jieba-1.7.2.tgz}
     engines: {node: '>= 10'}
     requiresBuild: true
     optionalDependencies:
@@ -383,11 +383,11 @@ packages:
     optional: true
 
   /asynckit@0.4.0:
-    resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=, tarball: asynckit/download/asynckit-0.4.0.tgz}
+    resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=, tarball: https://registry.npm.taobao.org/asynckit/download/asynckit-0.4.0.tgz}
     dev: false
 
   /axios@1.6.2(debug@4.3.4):
-    resolution: {integrity: sha1-3mfULHVbVx0+aY3xtlBM3psO6fI=, tarball: axios/download/axios-1.6.2.tgz}
+    resolution: {integrity: sha1-3mfULHVbVx0+aY3xtlBM3psO6fI=, tarball: https://registry.npm.taobao.org/axios/download/axios-1.6.2.tgz}
     dependencies:
       follow-redirects: 1.15.3(debug@4.3.4)
       form-data: 4.0.0
@@ -461,7 +461,7 @@ packages:
     dev: false
 
   /charenc@0.0.2:
-    resolution: {integrity: sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=, tarball: charenc/download/charenc-0.0.2.tgz}
+    resolution: {integrity: sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=, tarball: https://registry.npm.taobao.org/charenc/download/charenc-0.0.2.tgz}
     dev: false
 
   /chownr@2.0.0:
@@ -520,7 +520,7 @@ packages:
     optional: true
 
   /combined-stream@1.0.8:
-    resolution: {integrity: sha1-w9RaizT9cwYxoRCoolIGgrMdWn8=, tarball: combined-stream/download/combined-stream-1.0.8.tgz}
+    resolution: {integrity: sha1-w9RaizT9cwYxoRCoolIGgrMdWn8=, tarball: https://registry.npm.taobao.org/combined-stream/download/combined-stream-1.0.8.tgz}
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
@@ -559,7 +559,7 @@ packages:
     optional: true
 
   /crypt@0.0.2:
-    resolution: {integrity: sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=, tarball: crypt/download/crypt-0.0.2.tgz}
+    resolution: {integrity: sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=, tarball: https://registry.npm.taobao.org/crypt/download/crypt-0.0.2.tgz}
     dev: false
 
   /dayjs@1.11.10:
@@ -578,7 +578,7 @@ packages:
       ms: 2.1.2
 
   /delayed-stream@1.0.0:
-    resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=, tarball: delayed-stream/download/delayed-stream-1.0.0.tgz}
+    resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=, tarball: https://registry.npm.taobao.org/delayed-stream/download/delayed-stream-1.0.0.tgz}
     engines: {node: '>=0.4.0'}
     dev: false
 
@@ -639,7 +639,7 @@ packages:
     dev: false
 
   /follow-redirects@1.15.3(debug@4.3.4):
-    resolution: {integrity: sha1-/i8+8mkK/OfoLtC0TbCBZbIHEjo=, tarball: follow-redirects/download/follow-redirects-1.15.3.tgz}
+    resolution: {integrity: sha1-/i8+8mkK/OfoLtC0TbCBZbIHEjo=, tarball: https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.15.3.tgz}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -651,7 +651,7 @@ packages:
     dev: false
 
   /form-data@4.0.0:
-    resolution: {integrity: sha1-k5Gdrq82HuUpWEubMWZNwSyfpFI=, tarball: form-data/download/form-data-4.0.0.tgz}
+    resolution: {integrity: sha1-k5Gdrq82HuUpWEubMWZNwSyfpFI=, tarball: https://registry.npm.taobao.org/form-data/download/form-data-4.0.0.tgz}
     engines: {node: '>= 6'}
     dependencies:
       asynckit: 0.4.0
@@ -660,7 +660,7 @@ packages:
     dev: false
 
   /fs-extra@11.2.0:
-    resolution: {integrity: sha1-5w4X361kIyKH0BkpOZ4Op8hrDls=, tarball: fs-extra/download/fs-extra-11.2.0.tgz}
+    resolution: {integrity: sha1-5w4X361kIyKH0BkpOZ4Op8hrDls=, tarball: https://registry.npm.taobao.org/fs-extra/download/fs-extra-11.2.0.tgz}
     engines: {node: '>=14.14'}
     dependencies:
       graceful-fs: 4.2.11
@@ -725,7 +725,7 @@ packages:
     optional: true
 
   /graceful-fs@4.2.11:
-    resolution: {integrity: sha1-QYPk6L8Iu24Fu7L30uDI9xLKQOM=, tarball: graceful-fs/download/graceful-fs-4.2.11.tgz}
+    resolution: {integrity: sha1-QYPk6L8Iu24Fu7L30uDI9xLKQOM=, tarball: https://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.2.11.tgz}
     dev: false
 
   /has-flag@3.0.0:
@@ -832,7 +832,7 @@ packages:
     optional: true
 
   /is-buffer@1.1.6:
-    resolution: {integrity: sha1-76ouqdqg16suoTqXsritUf776L4=, tarball: is-buffer/download/is-buffer-1.1.6.tgz}
+    resolution: {integrity: sha1-76ouqdqg16suoTqXsritUf776L4=, tarball: https://registry.npm.taobao.org/is-buffer/download/is-buffer-1.1.6.tgz}
     dev: false
 
   /is-core-module@2.13.1:
@@ -866,7 +866,7 @@ packages:
     optional: true
 
   /jsonfile@6.1.0:
-    resolution: {integrity: sha1-vFWyY0eTxnnsZAMJTrE2mKbsCq4=, tarball: jsonfile/download/jsonfile-6.1.0.tgz}
+    resolution: {integrity: sha1-vFWyY0eTxnnsZAMJTrE2mKbsCq4=, tarball: https://registry.npm.taobao.org/jsonfile/download/jsonfile-6.1.0.tgz}
     dependencies:
       universalify: 2.0.1
     optionalDependencies:
@@ -906,7 +906,7 @@ packages:
     optional: true
 
   /md5@2.3.0:
-    resolution: {integrity: sha1-w9qaaq46MLRreww0m4exENw72k8=, tarball: md5/download/md5-2.3.0.tgz}
+    resolution: {integrity: sha1-w9qaaq46MLRreww0m4exENw72k8=, tarball: https://registry.npm.taobao.org/md5/download/md5-2.3.0.tgz}
     dependencies:
       charenc: 0.0.2
       crypt: 0.0.2
@@ -914,12 +914,12 @@ packages:
     dev: false
 
   /mime-db@1.52.0:
-    resolution: {integrity: sha1-u6vNwChZ9JhzAchW4zh85exDv3A=, tarball: mime-db/download/mime-db-1.52.0.tgz}
+    resolution: {integrity: sha1-u6vNwChZ9JhzAchW4zh85exDv3A=, tarball: https://registry.npm.taobao.org/mime-db/download/mime-db-1.52.0.tgz}
     engines: {node: '>= 0.6'}
     dev: false
 
   /mime-types@2.1.35:
-    resolution: {integrity: sha1-OBqHG2KnNEUGYK497uRIE/cNlZo=, tarball: mime-types/download/mime-types-2.1.35.tgz}
+    resolution: {integrity: sha1-OBqHG2KnNEUGYK497uRIE/cNlZo=, tarball: https://registry.npm.taobao.org/mime-types/download/mime-types-2.1.35.tgz}
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
@@ -973,10 +973,10 @@ packages:
     optional: true
 
   /ms@2.1.2:
-    resolution: {integrity: sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=, tarball: ms/download/ms-2.1.2.tgz}
+    resolution: {integrity: sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=, tarball: https://registry.npm.taobao.org/ms/download/ms-2.1.2.tgz}
 
   /ms@2.1.3:
-    resolution: {integrity: sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=, tarball: ms/download/ms-2.1.3.tgz}
+    resolution: {integrity: sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=, tarball: https://registry.npm.taobao.org/ms/download/ms-2.1.3.tgz}
     dev: false
 
   /mute-stream@0.0.7:
@@ -1002,7 +1002,7 @@ packages:
     dev: false
 
   /nodejieba@2.5.2:
-    resolution: {integrity: sha1-/JKe4p+Twoxjlpa6wDGbrBFqKWo=, tarball: nodejieba/download/nodejieba-2.5.2.tgz}
+    resolution: {integrity: sha512-ByskJvaBrQ2eV+5M0OeD80S5NKoGaHc9zi3Z/PTKl/95eac2YF8RmWduq9AknLpkQLrLAIcqurrtC6BzjpKwwg==, tarball: https://registry.npmmirror.com/nodejieba/-/nodejieba-2.5.2.tgz}
     engines: {node: '>= 10.20.0'}
     requiresBuild: true
     dependencies:
@@ -1127,7 +1127,7 @@ packages:
     optional: true
 
   /proxy-from-env@1.1.0:
-    resolution: {integrity: sha1-4QLxbKNVQkhldV0sno6k8k1Yw+I=, tarball: proxy-from-env/download/proxy-from-env-1.1.0.tgz}
+    resolution: {integrity: sha1-4QLxbKNVQkhldV0sno6k8k1Yw+I=, tarball: https://registry.npm.taobao.org/proxy-from-env/download/proxy-from-env-1.1.0.tgz}
     dev: false
 
   /readable-stream@3.6.2:
@@ -1223,7 +1223,7 @@ packages:
     dev: false
 
   /segmentit@2.0.3:
-    resolution: {integrity: sha1-eZiXZnrLxRiyeBGs2yo0GnnHlz8=, tarball: segmentit/download/segmentit-2.0.3.tgz}
+    resolution: {integrity: sha512-7mn2XL3OdTUQ+AhHz7SbgyxLTaQRzTWQNVwiK+UlTO8aePGbSwvKUzTwE4238+OUY9MoR6ksAg35zl8sfTunQQ==, tarball: https://registry.npmmirror.com/segmentit/-/segmentit-2.0.3.tgz}
     requiresBuild: true
     dependencies:
       preval.macro: 4.0.0
@@ -1374,7 +1374,7 @@ packages:
     dev: true
 
   /universalify@2.0.1:
-    resolution: {integrity: sha1-Fo78IYCWTmOG0GHglN9hr+I5sY0=, tarball: universalify/download/universalify-2.0.1.tgz}
+    resolution: {integrity: sha1-Fo78IYCWTmOG0GHglN9hr+I5sY0=, tarball: https://registry.npm.taobao.org/universalify/download/universalify-2.0.1.tgz}
     engines: {node: '>= 10.0.0'}
     dev: false
 

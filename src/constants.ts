@@ -8,7 +8,7 @@ export interface Argv {
   inputKey?: boolean
   hasOutPutFile?: boolean
   // 使用百度翻译
-  bdFanyi?: boolean
+  bdfanyi?: boolean
 }
 
 export interface IConfig {
@@ -17,8 +17,16 @@ export interface IConfig {
 
 export interface Store {
   outputType: Array<'label' | 'value' | 'mapping'>
-  baiduFanyi: {
+  bdfanyi: {
     appid: string
     key: string
+  }
+}
+
+export interface BaseConfig {
+  // 百度翻译配置
+  bdfinyi?: {
+    appid?: string
+    key?: string
   }
 }

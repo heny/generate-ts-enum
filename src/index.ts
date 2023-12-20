@@ -32,11 +32,11 @@ class Executor {
     }
   }
 
-  async execFn(argv) {
+  async execFn(argv: Argv) {
     config.setStartTime(Date.now())
     config.setFullArgv(argv)
     await this.checkArgv(argv)
-    if (argv.bdFanyi) {
+    if (argv.bdfanyi) {
       await PromptInstance.getBdFanyiKey()
     }
     await PromptInstance.promptOutputType()

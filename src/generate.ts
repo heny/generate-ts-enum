@@ -2,18 +2,16 @@ import path from 'path'
 import fs from 'fs-extra'
 import pinyin from 'pinyin'
 import chalk from 'chalk'
-import md5 from 'md5'
-import axios from 'axios'
-import { translate } from '@vitalets/google-translate-api'
 import ms from 'ms'
-import { evalToJSON, preLog, toUpperCase, sleep } from './utils'
+import TranslateInstance from './translate'
+import { evalToJSON, preLog, toUpperCase } from './utils'
 import config from './config'
 
 const cnTextReg = /[\u4e00-\u9fa5]/
 
 class EnumGenerator {
   // 翻译中文，需要 await 等待
-  async translateToEnglish(str) {
+  async translateToEnglish(str): Promise<string> {
     if (typeof str !== 'string') {
       return str
     }
@@ -22,40 +20,19 @@ class EnumGenerator {
       return toUpperCase(str.split(' '))
     }
 
-    if (config.argv.bdFanyi) {
-      preLog(`开始翻译：${str}`)
-      await sleep(1000)
-      return this.bdfanyi(str)
+    const base = config.baseConfig
+    let result
+    if(base.bdfinyi?.appid && base.bdfinyi.key) {
+      result = await TranslateInstance.bdfanyi(str)
+    } else {
+      result = await TranslateInstance.googleFreeTranslate(str)
     }
 
-    preLog(`开始翻译：${str}`)
-    // 限制翻译速率 防止被拉黑ip
-    await sleep(1000)
-    return translate(str, { to: 'en' })
-      .then((res) => toUpperCase(res.text.split(' ')))
-      .catch((_err) => this.convertToPinyin(str))
-  }
-
-  async bdfanyi(text: string, from = 'zh', to = 'en') {
-    const { appid, key } = config.getStore('baiduFanyi')
-    if (!appid || !key) {
-      console.log(chalk.red('请配置百度翻译的 appid 和 key'))
-      process.exit(0)
+    if(!result) {
+      preLog(`拼音转换：${str}`)
+      return this.convertToPinyin(str)
     }
-    const salt = new Date().getTime()
-    const sign = md5(`${appid}${text}${salt}${key}`)
-    const q = encodeURIComponent(text)
-    const url = `https://fanyi-api.baidu.com/api/trans/vip/translate?q=${q}&from=${from}&to=${to}&appid=${appid}&salt=${salt}&sign=${sign}`
-
-    try {
-      const response = await axios.get(url)
-      const result = response?.data?.trans_result[0].dst
-      return toUpperCase(result.split(' '))
-    } catch (error: any) {
-      console.log(chalk.red(`翻译失败：${error}`))
-      const result = this.convertToPinyin(text)
-      return result
-    }
+    return toUpperCase(result.split(' '))
   }
 
   // 转换拼音
@@ -128,7 +105,7 @@ class EnumGenerator {
         statusValueEnum += `  /**\n   * ${label}\n   */\n  ${varLabel} = ${item[valueKey]}${comma}\n`
       }
       statusLabelEnum += `  /**\n   * ${label}\n   */\n  ${varLabel} = '${label}'${comma}\n`
-      statusMap += `  { value: ${ValueName}.${varLabel}, label: ${labelName}.${varLabel} }${comma}\n`
+      statusMap += `  { label: ${labelName}.${varLabel}, value: ${ValueName}.${varLabel} }${comma}\n`
     }
 
     statusValueEnum += '}\n'

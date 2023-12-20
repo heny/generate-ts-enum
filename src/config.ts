@@ -1,4 +1,8 @@
-import { IConfig, Argv, Store } from './constants'
+import path from 'path'
+import fs from 'fs-extra'
+import os from 'os'
+import { IConfig, Argv, Store, BaseConfig } from './constants'
+import chalk from 'chalk'
 
 class Config implements IConfig {
   private execStartTime: number
@@ -10,13 +14,45 @@ class Config implements IConfig {
     this.argv = {} as Argv
     this.store = {
       outputType: [],
-      baiduFanyi: {
+      bdfanyi: {
         appid: '',
         key: '',
       },
     }
   }
 
+  // 获取用户配置 ~/.generate-ts-gte.json 或者项目目录下
+  get baseConfig(): BaseConfig {
+    const filePath = path.join(os.homedir(), '.generate-ts-gte.json')
+    
+    try {
+      const config = fs.readJsonSync(filePath)
+      return config
+    } catch (err) {
+      return {}
+    }
+  }
+
+  setBaseConfig<T extends keyof BaseConfig>(key: T, value: BaseConfig[T]): void {
+    const filePath = path.join(os.homedir(), '.generate-ts-gte.json');
+    let existingConfig = {};
+    
+    try {
+      if (fs.existsSync(filePath)) {
+        existingConfig = fs.readJsonSync(filePath);
+      }
+
+      const newConfig = { [key]: value }
+
+      // 写入到 ~/.generate-ts-gte.json 文件
+      fs.writeJsonSync(filePath, { ...existingConfig, ...newConfig }, { spaces: 2 });
+      console.log(chalk.green(`已更新到配置文件：${filePath}`), newConfig);
+    } catch (err) {
+      console.log(chalk.red(`写入配置文件时出错: ${err}`));
+      process.exit(0)
+    }
+  }
+  
   get startTime(): number {
     return this.execStartTime
   }

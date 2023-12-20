@@ -3,9 +3,10 @@ import { hideBin } from 'yargs/helpers'
 import path from 'path'
 import ExecutorInstance from '.'
 import chalk from 'chalk'
+import { Argv } from './constants'
 
 yargs(hideBin(process.argv))
-  .command(
+  .command<Argv>(
     'enum',
     '生成枚举和映射',
     (yargs) => {
@@ -26,7 +27,7 @@ yargs(hideBin(process.argv))
           type: 'string',
         })
         .option('bdf', {
-          alias: 'bdFanyi',
+          alias: 'bdfanyi',
           describe: '是否使用百度翻译',
           type: 'boolean',
         })
