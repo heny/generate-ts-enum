@@ -40,6 +40,7 @@ export const StatusMap = [
   { value: StatusValue.TurnOn, label: StatusLabel.TurnOn }
 ]
 ```
+
 ## Use
 ```bash
 # 开始一段转换
@@ -48,3 +49,10 @@ gte enum
 # 查看帮助
 gte enum -h
 ```
+
+## 使用百度翻译
+通过访问 https://api.fanyi.baidu.com/ 来创建自己的appid以及key，免费用户每日有5w字符免费翻译，个人认证用户每日有100w字符免费翻译
+
+得到appid以及key之后，通过添加 `--bdf` 来配置，只需要配置一次即可
+
+如果需要修改或删除自己的appid以及key，仅需要重新添加 `--bdf` 配置即可
