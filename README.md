@@ -40,3 +40,11 @@ export const StatusMap = [
   { value: StatusValue.TurnOn, label: StatusLabel.TurnOn }
 ]
 ```
+## Use
+```bash
+# 开始一段转换
+gte enum
+
+# 查看帮助
+gte enum -h
+```
