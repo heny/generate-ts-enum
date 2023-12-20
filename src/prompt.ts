@@ -150,6 +150,26 @@ class Prompt {
     return response
   }
 
+  async getBdFanyiKey(): Promise<void> {
+    const questions = await this.prompts<{ appid: string; key: string }>([
+      {
+        type: 'text',
+        name: 'appid',
+        message: '请输入百度appid：',
+      },
+      {
+        type: 'text',
+        name: 'key',
+        message: '请输入百度密钥：',
+      },
+    ])
+    config.setStore('baiduFanyi', questions)
+
+    // 写入到 ~/.generate-ts-gte.json 文件
+    const filePath = path.join(os.homedir(), '.generate-ts-gte.json')
+    await fs.writeJson(filePath, questions, { spaces: 2 })
+  }
+
   async promptOutPut(): Promise<void> {
     const answers = await this.prompts<{ hasOutPutFile: boolean; output: string }>([
       {

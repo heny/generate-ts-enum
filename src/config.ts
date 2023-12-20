@@ -10,6 +10,10 @@ class Config implements IConfig {
     this.argv = {} as Argv
     this.store = {
       outputType: [],
+      baiduFanyi: {
+        appid: '',
+        key: '',
+      },
     }
   }
 

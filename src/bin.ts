@@ -25,6 +25,11 @@ yargs(hideBin(process.argv))
           describe: '指定文件',
           type: 'string',
         })
+        .option('bdf', {
+          alias: 'bdFanyi',
+          describe: '是否使用百度翻译',
+          type: 'boolean',
+        })
         .option('of', {
           alias: 'hasOutPutFile',
           describe: '是否需要输出文件',

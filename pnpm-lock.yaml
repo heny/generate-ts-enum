@@ -8,6 +8,9 @@ dependencies:
   '@vitalets/google-translate-api':
     specifier: ^9.0.0
     version: 9.0.0
+  axios:
+    specifier: ^1.6.2
+    version: 1.6.2(debug@4.3.4)
   chalk:
     specifier: 4.1.2
     version: 4.1.2
@@ -20,9 +23,9 @@ dependencies:
   inquirer:
     specifier: ^5.2.0
     version: 5.2.0
-  lodash:
-    specifier: ^4.17.21
-    version: 4.17.21
+  md5:
+    specifier: ^2.3.0
+    version: 2.3.0
   ms:
     specifier: ^2.1.3
     version: 2.1.3
@@ -379,6 +382,20 @@ packages:
     dev: false
     optional: true
 
+  /asynckit@0.4.0:
+    resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=, tarball: asynckit/download/asynckit-0.4.0.tgz}
+    dev: false
+
+  /axios@1.6.2(debug@4.3.4):
+    resolution: {integrity: sha1-3mfULHVbVx0+aY3xtlBM3psO6fI=, tarball: axios/download/axios-1.6.2.tgz}
+    dependencies:
+      follow-redirects: 1.15.3(debug@4.3.4)
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /babel-plugin-macros@2.8.0:
     resolution: {integrity: sha1-D5WKfMZVax5lNERl2ZERoeXhATg=, tarball: https://registry.npm.taobao.org/babel-plugin-macros/download/babel-plugin-macros-2.8.0.tgz}
     requiresBuild: true
@@ -443,6 +460,10 @@ packages:
     resolution: {integrity: sha1-tUc7M9yXxCTl2Y3IfVXU2KKci/I=, tarball: https://registry.npm.taobao.org/chardet/download/chardet-0.4.2.tgz}
     dev: false
 
+  /charenc@0.0.2:
+    resolution: {integrity: sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=, tarball: charenc/download/charenc-0.0.2.tgz}
+    dev: false
+
   /chownr@2.0.0:
     resolution: {integrity: sha1-Fb++U9LqtM9w8YqM1o6+Wzyx3s4=, tarball: https://registry.npm.taobao.org/chownr/download/chownr-2.0.0.tgz}
     engines: {node: '>=10'}
@@ -498,6 +519,13 @@ packages:
     dev: false
     optional: true
 
+  /combined-stream@1.0.8:
+    resolution: {integrity: sha1-w9RaizT9cwYxoRCoolIGgrMdWn8=, tarball: combined-stream/download/combined-stream-1.0.8.tgz}
+    engines: {node: '>= 0.8'}
+    dependencies:
+      delayed-stream: 1.0.0
+    dev: false
+
   /commander@1.1.1:
     resolution: {integrity: sha1-UNFlGGiuYOzP8KLZ80WVN2vGsEE=, tarball: https://registry.npm.taobao.org/commander/download/commander-1.1.1.tgz}
     engines: {node: '>= 0.6.x'}
@@ -530,6 +558,10 @@ packages:
     dev: false
     optional: true
 
+  /crypt@0.0.2:
+    resolution: {integrity: sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=, tarball: crypt/download/crypt-0.0.2.tgz}
+    dev: false
+
   /dayjs@1.11.10:
     resolution: {integrity: sha1-aKzqhTF6bhZEV9bWlHVkAppqFqA=, tarball: https://registry.npm.taobao.org/dayjs/download/dayjs-1.11.10.tgz}
     dev: false
@@ -544,6 +576,11 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+
+  /delayed-stream@1.0.0:
+    resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=, tarball: delayed-stream/download/delayed-stream-1.0.0.tgz}
+    engines: {node: '>=0.4.0'}
+    dev: false
 
   /delegates@1.0.0:
     resolution: {integrity: sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=, tarball: https://registry.npm.taobao.org/delegates/download/delegates-1.0.0.tgz}
@@ -599,6 +636,27 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       escape-string-regexp: 1.0.5
+    dev: false
+
+  /follow-redirects@1.15.3(debug@4.3.4):
+    resolution: {integrity: sha1-/i8+8mkK/OfoLtC0TbCBZbIHEjo=, tarball: follow-redirects/download/follow-redirects-1.15.3.tgz}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
+    dev: false
+
+  /form-data@4.0.0:
+    resolution: {integrity: sha1-k5Gdrq82HuUpWEubMWZNwSyfpFI=, tarball: form-data/download/form-data-4.0.0.tgz}
+    engines: {node: '>= 6'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.35
     dev: false
 
   /fs-extra@11.2.0:
@@ -773,6 +831,10 @@ packages:
     dev: false
     optional: true
 
+  /is-buffer@1.1.6:
+    resolution: {integrity: sha1-76ouqdqg16suoTqXsritUf776L4=, tarball: is-buffer/download/is-buffer-1.1.6.tgz}
+    dev: false
+
   /is-core-module@2.13.1:
     resolution: {integrity: sha1-rQ11Msb+qdoevcgnQtdFJcYnM4Q=, tarball: https://registry.npm.taobao.org/is-core-module/download/is-core-module-2.13.1.tgz}
     requiresBuild: true
@@ -842,6 +904,26 @@ packages:
       semver: 6.3.1
     dev: false
     optional: true
+
+  /md5@2.3.0:
+    resolution: {integrity: sha1-w9qaaq46MLRreww0m4exENw72k8=, tarball: md5/download/md5-2.3.0.tgz}
+    dependencies:
+      charenc: 0.0.2
+      crypt: 0.0.2
+      is-buffer: 1.1.6
+    dev: false
+
+  /mime-db@1.52.0:
+    resolution: {integrity: sha1-u6vNwChZ9JhzAchW4zh85exDv3A=, tarball: mime-db/download/mime-db-1.52.0.tgz}
+    engines: {node: '>= 0.6'}
+    dev: false
+
+  /mime-types@2.1.35:
+    resolution: {integrity: sha1-OBqHG2KnNEUGYK497uRIE/cNlZo=, tarball: mime-types/download/mime-types-2.1.35.tgz}
+    engines: {node: '>= 0.6'}
+    dependencies:
+      mime-db: 1.52.0
+    dev: false
 
   /mimic-fn@1.2.0:
     resolution: {integrity: sha1-ggyGo5M0ZA6ZUWkovQP8qIBX0CI=, tarball: https://registry.npm.taobao.org/mimic-fn/download/mimic-fn-1.2.0.tgz}
@@ -1043,6 +1125,10 @@ packages:
       babel-plugin-preval: 4.0.0
     dev: false
     optional: true
+
+  /proxy-from-env@1.1.0:
+    resolution: {integrity: sha1-4QLxbKNVQkhldV0sno6k8k1Yw+I=, tarball: proxy-from-env/download/proxy-from-env-1.1.0.tgz}
+    dev: false
 
   /readable-stream@3.6.2:
     resolution: {integrity: sha1-VqmzbqllwAxak+8x6xEaDxEFaWc=, tarball: https://registry.npm.taobao.org/readable-stream/download/readable-stream-3.6.2.tgz}

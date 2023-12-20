@@ -1,6 +1,7 @@
 import PromptInstance from './prompt'
 import GenerateInstance from './generate'
 import config from './config'
+import { Argv } from './constants'
 
 class Executor {
   constructor() {
@@ -8,7 +9,7 @@ class Executor {
     this.execFn = this.execFn.bind(this)
   }
 
-  async checkArgv(argv) {
+  async checkArgv(argv: Argv) {
     let title = argv.title
     if (!title) {
       title = await PromptInstance.getTitle()
@@ -35,6 +36,9 @@ class Executor {
     config.setStartTime(Date.now())
     config.setFullArgv(argv)
     await this.checkArgv(argv)
+    if (argv.bdFanyi) {
+      await PromptInstance.getBdFanyiKey()
+    }
     await PromptInstance.promptOutputType()
     if (argv.file) {
       GenerateInstance.byFileGenerate(argv.file)

@@ -37,10 +37,21 @@ export function evalToJSON(str: string) {
   }
 }
 
+function wordToUpperCase(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
 // 将数组拼接成upper-case
 export function toUpperCase(arr) {
+  if (typeof arr === 'string') {
+    return wordToUpperCase(arr)
+  }
   arr = flat(arr)
   return arr.reduce((result, item) => {
-    return result + item.charAt(0).toUpperCase() + item.slice(1)
+    return result + wordToUpperCase(item)
   }, '')
+}
+
+export function sleep(time) {
+  return new Promise((resolve) => setTimeout(resolve, time))
 }
