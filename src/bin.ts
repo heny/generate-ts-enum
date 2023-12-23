@@ -1,9 +1,9 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import ExecutorInstance from '..'
-import PromptInstance from '../prompt'
-import { Argv } from '../constants'
-import generateCommands from './generate'
+import ExecutorInstance from './generate/init'
+import TranslateInstance from './translate'
+import { Argv } from './constants'
+import generateCommands from './generate/command'
 
 yargs(hideBin(process.argv))
   .command<Argv>('enum', '生成枚举和映射', generateCommands, ExecutorInstance.execFn)
@@ -19,7 +19,7 @@ yargs(hideBin(process.argv))
     },
     function (argv) {
       if (argv.bdf) {
-        PromptInstance.getBdFanyiKey()
+        TranslateInstance.getBdFanyiKey()
       }
     }
   )

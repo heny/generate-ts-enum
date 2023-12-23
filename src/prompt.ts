@@ -4,7 +4,7 @@ import path from 'path'
 import fs from 'fs-extra'
 import chalk from 'chalk'
 import { spawn } from 'child_process'
-import GenerateInstance from './generate'
+import GenerateInstance from './generate/handle'
 import config from './config'
 
 async function fetchVimContent(): Promise<string> {
@@ -148,22 +148,6 @@ class Prompt {
 
     const response = await this.prompts(questions)
     return response
-  }
-
-  async getBdFanyiKey(): Promise<void> {
-    const questions = await this.prompts<{ appid: string; key: string }>([
-      {
-        type: 'text',
-        name: 'appid',
-        message: '请输入百度appid：',
-      },
-      {
-        type: 'text',
-        name: 'key',
-        message: '请输入百度密钥：',
-      },
-    ])
-    config.setBaseConfig('bdfinyi', questions)
   }
 
   async promptOutPut(): Promise<void> {

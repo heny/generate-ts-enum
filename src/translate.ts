@@ -3,6 +3,7 @@ import md5 from 'md5'
 import axios from 'axios'
 import config from './config'
 import chalk from 'chalk'
+import PromptInstance from './prompt'
 import { sleep, preLog } from './utils'
 
 type TranslateKey = 'googleFree' | 'baidu'
@@ -84,6 +85,23 @@ class Translate {
 			this.translateStatus.baidu = false
 			return ''
 		}
+	}
+
+	// 写入百度翻译配置
+	async getBdFanyiKey(): Promise<void> {
+		const questions = await PromptInstance.prompts<{ appid: string; key: string }>([
+			{
+				type: 'text',
+				name: 'appid',
+				message: '请输入百度appid：',
+			},
+			{
+				type: 'text',
+				name: 'key',
+				message: '请输入百度密钥：',
+			},
+		])
+		config.setBaseConfig('bdfinyi', questions)
 	}
 }
 

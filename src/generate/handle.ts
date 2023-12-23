@@ -3,9 +3,9 @@ import fs from 'fs-extra'
 import pinyin from 'pinyin'
 import chalk from 'chalk'
 import ms from 'ms'
-import TranslateInstance from './translate'
-import { evalToJSON, preLog, toUpperCase } from './utils'
-import config from './config'
+import TranslateInstance from '../translate'
+import { evalToJSON, preLog, toUpperCase } from '../utils'
+import config from '../config'
 
 const cnTextReg = /[\u4e00-\u9fa5]/
 

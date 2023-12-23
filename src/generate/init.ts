@@ -1,7 +1,8 @@
-import PromptInstance from './prompt'
-import GenerateInstance from './generate'
-import config from './config'
-import { Argv } from './constants'
+import PromptInstance from '../prompt'
+import GenerateInstance from './handle'
+import TranslateInstance from '../translate'
+import config from '../config'
+import { Argv } from '../constants'
 
 class Executor {
   constructor() {
@@ -40,7 +41,7 @@ class Executor {
     await this.checkArgv(argv)
 
     if (argv.bdfanyi) {
-      await PromptInstance.getBdFanyiKey()
+      await TranslateInstance.getBdFanyiKey()
     }
 
     await PromptInstance.promptOutputType()
