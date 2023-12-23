@@ -13,7 +13,6 @@ class Config implements IConfig {
     this.execStartTime = 0
     this.argv = {} as Argv
     this.store = {
-      outputType: [],
       bdfanyi: {
         appid: '',
         key: '',
@@ -24,7 +23,7 @@ class Config implements IConfig {
   // 获取用户配置 ~/.generate-ts-gte.json 或者项目目录下
   get baseConfig(): BaseConfig {
     const filePath = path.join(os.homedir(), '.generate-ts-gte.json')
-    
+
     try {
       const config = fs.readJsonSync(filePath)
       return config
@@ -36,7 +35,7 @@ class Config implements IConfig {
   setBaseConfig<T extends keyof BaseConfig>(key: T, value: BaseConfig[T]): void {
     const filePath = path.join(os.homedir(), '.generate-ts-gte.json');
     let existingConfig = {};
-    
+
     try {
       if (fs.existsSync(filePath)) {
         existingConfig = fs.readJsonSync(filePath);
@@ -52,7 +51,7 @@ class Config implements IConfig {
       process.exit(0)
     }
   }
-  
+
   get startTime(): number {
     return this.execStartTime
   }

@@ -48,6 +48,9 @@ gte enum
 
 # 查看帮助
 gte enum -h
+
+#one
+gte enum -f './test/input.json' -t '测试生成' -o './test/output.ts' --type label value mapping --labelKey 'label' --valueKey 'value'
 ```
 
 ## 使用百度翻译

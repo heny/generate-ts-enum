@@ -31,14 +31,9 @@ yargs(hideBin(process.argv))
           describe: '是否使用百度翻译',
           type: 'boolean',
         })
-        .option('of', {
-          alias: 'hasOutPutFile',
-          describe: '是否需要输出文件',
-          type: 'boolean',
-        })
         .option('o', {
           alias: 'output',
-          describe: '输出文件路径',
+          describe: '指定输出文件路径',
           type: 'string',
         })
         .option('labelKey', {
@@ -64,6 +59,12 @@ yargs(hideBin(process.argv))
             message: '请输入要转换的 value key:',
             type: 'string',
           },
+        })
+        .option('type', {
+          describe: '要生成的类型',
+          choices: ['label', 'value', 'mapping'],
+          type: 'array',
+          group: 'Options:',
         })
         .option('k', {
           alias: 'inputKey',

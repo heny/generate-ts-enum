@@ -1,3 +1,5 @@
+type OutputType = 'label' | 'value' | 'mapping'
+
 export interface Argv {
   array?: string
   title: string
@@ -6,9 +8,10 @@ export interface Argv {
   labelKey: string
   valueKey: string
   inputKey?: boolean
-  hasOutPutFile?: boolean
   // 使用百度翻译
   bdfanyi?: boolean
+  // 生成的类型label,value,mapping
+  type: OutputType[]
 }
 
 export interface IConfig {
@@ -16,7 +19,6 @@ export interface IConfig {
 }
 
 export interface Store {
-  outputType: Array<'label' | 'value' | 'mapping'>
   bdfanyi: {
     appid: string
     key: string

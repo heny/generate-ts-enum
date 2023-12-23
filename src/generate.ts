@@ -22,13 +22,13 @@ class EnumGenerator {
 
     const base = config.baseConfig
     let result
-    if(base.bdfinyi?.appid && base.bdfinyi.key) {
+    if (base.bdfinyi?.appid && base.bdfinyi.key) {
       result = await TranslateInstance.bdfanyi(str)
     } else {
       result = await TranslateInstance.googleFreeTranslate(str)
     }
 
-    if(!result) {
+    if (!result) {
       preLog(`拼音转换：${str}`)
       return this.convertToPinyin(str)
     }
@@ -60,7 +60,7 @@ class EnumGenerator {
   }
 
   outputContent(label, value, mapping) {
-    const types = config.getStore('outputType')
+    const types = config.argv.type
     let result = ''
     // 按照以下的顺序加
     if (types.includes('label')) {
