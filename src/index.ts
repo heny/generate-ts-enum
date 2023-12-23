@@ -29,10 +29,7 @@ class Executor {
       config.setArgv('valueKey', valueKey)
     }
 
-    // 检验输出文件
-    if (typeof argv.output !== 'undefined') {
-      await PromptInstance.checkOutput()
-    } else if (!argv.output) {
+    if (!argv.output) {
       await PromptInstance.promptOutPut()
     }
   }

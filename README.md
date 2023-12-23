@@ -50,7 +50,7 @@ gte enum
 gte enum -h
 
 #one
-gte enum -f './test/input.json' -t '测试生成' -o './test/output.ts' --type label value mapping --labelKey 'label' --valueKey 'value'
+gte enum -t '测试生成' -f './test/input.json' -o './test/output.ts' --type label value mapping --labelKey 'label' --valueKey 'value'
 ```
 
 ## 使用百度翻译

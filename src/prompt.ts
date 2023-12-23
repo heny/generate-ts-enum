@@ -166,32 +166,6 @@ class Prompt {
     config.setBaseConfig('bdfinyi', questions)
   }
 
-  async checkOutput(): Promise<void> {
-    const { output } = config.argv
-
-    // 校验指定输出路径
-    if (typeof output !== 'undefined' && output) {
-      const fullPath = path.resolve(output)
-      const dirPath = path.dirname(fullPath)
-      if (path.extname(fullPath) !== '.ts') {
-        console.log(chalk.red('输出文件必须是一个 TypeScript (.ts) 文件'))
-        process.exit(0)
-      }
-
-      try {
-        await fs.access(dirPath, fs.constants.W_OK)
-      } catch (err) {
-        console.log(chalk.red(`输出文件没有写入权限，请手动赋予写入权限，例如使用命令 \`${chalk.cyan(
-          `chmod +w ${dirPath}`
-        )}\``))
-        process.exit(0)
-      }
-    } else {
-      // 指定o 不指定路径时，提示指定文件
-      await this.promptOutPut()
-    }
-  }
-
   async promptOutPut(): Promise<void> {
     const answers = await this.prompts<{ hasOutPutFile: boolean; output: string }>([
       {
