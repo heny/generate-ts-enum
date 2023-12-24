@@ -12,17 +12,12 @@ class Config implements IConfig {
   constructor() {
     this.execStartTime = 0
     this.argv = {} as Argv
-    this.store = {
-      bdfanyi: {
-        appid: '',
-        key: '',
-      },
-    }
+    this.store = {}
   }
 
   // 获取用户配置 ~/.generate-ts-gte.json 或者项目目录下
   get baseConfig(): BaseConfig {
-    const filePath = path.join(os.homedir(), '.generate-ts-gte.json')
+    const filePath = this.baseConfigPath
 
     try {
       const config = fs.readJsonSync(filePath)
@@ -32,8 +27,12 @@ class Config implements IConfig {
     }
   }
 
+  get baseConfigPath() {
+    return path.join(os.homedir(), '.generate-ts-gte.json')
+  }
+
   setBaseConfig<T extends keyof BaseConfig>(key: T, value: BaseConfig[T]): void {
-    const filePath = path.join(os.homedir(), '.generate-ts-gte.json');
+    const filePath = this.baseConfigPath;
     let existingConfig = {};
 
     try {

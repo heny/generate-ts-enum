@@ -18,12 +18,7 @@ export interface IConfig {
   argv: Argv
 }
 
-export interface Store {
-  bdfanyi: {
-    appid: string
-    key: string
-  }
-}
+export interface Store { }
 
 export interface BaseConfig {
   // 百度翻译配置
