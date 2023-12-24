@@ -3,6 +3,20 @@
 
 ### Features
 
+* 0.0.5 ([f9fa525](https://github.com/heny/generate-ts-enum/commit/f9fa5253f52ee0fdc4c2d3e3eb3ba2e53e653e0e))
+* 调整目录引入方式 ([c8351c9](https://github.com/heny/generate-ts-enum/commit/c8351c9f88618c9af0657e82c7301fd784dca0aa))
+* 调整校验方式，bin文件移动 ([03282d1](https://github.com/heny/generate-ts-enum/commit/03282d19bb7466f6d4e54b66dceab66241ec7033))
+* 添加config获取当前的配置文件 ([d43c1a8](https://github.com/heny/generate-ts-enum/commit/d43c1a8319331643a4cb295051f050e7991895cb))
+* 优化输出文件细节 ([b4b0095](https://github.com/heny/generate-ts-enum/commit/b4b00950cb5b04b30138177af41973fcb7fe6a18))
+* 支持一次性输出 ([c8d3c94](https://github.com/heny/generate-ts-enum/commit/c8d3c94bdfd59dc77ef3e1ee0481b6bc23580dd7))
+
+
+
+## [0.0.5](https://github.com/heny/generate-ts-enum/compare/v0.0.4...v0.0.5) (2023-12-24)
+
+
+### Features
+
 * 调整目录引入方式 ([c8351c9](https://github.com/heny/generate-ts-enum/commit/c8351c9f88618c9af0657e82c7301fd784dca0aa))
 * 调整校验方式，bin文件移动 ([03282d1](https://github.com/heny/generate-ts-enum/commit/03282d19bb7466f6d4e54b66dceab66241ec7033))
 * 添加config获取当前的配置文件 ([d43c1a8](https://github.com/heny/generate-ts-enum/commit/d43c1a8319331643a4cb295051f050e7991895cb))
