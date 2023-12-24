@@ -21,6 +21,7 @@
     "url": "git+https://github.com/heny/generate-ts-enum.git"
   },
   "dependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@vitalets/google-translate-api": "^9.0.0",
     "axios": "^1.6.2",
     "chalk": "4.1.2",

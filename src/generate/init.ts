@@ -11,23 +11,18 @@ class Executor {
   }
 
   async checkArgv(argv: Argv) {
-    let title = argv.title
-    if (!title) {
-      title = await PromptInstance.getTitle()
-      config.setArgv('title', title)
+    if (!argv.title) {
+      await PromptInstance.getTitle()
     }
-    if (!title) {
+    if (!argv.title) {
       console.error('缺少必需的选项：-t')
       process.exit(1)
     }
 
     // 校验 label Key
-    const curLabelKey = argv.labelKey
-    const curValueKey = argv.valueKey
-    if (argv.inputKey || !curLabelKey || !curValueKey) {
-      const { labelKey, valueKey } = await PromptInstance.getLabelKeyValue()
-      config.setArgv('labelKey', labelKey)
-      config.setArgv('valueKey', valueKey)
+    const { labelKey, valueKey, inputKey } = argv
+    if (inputKey || !labelKey || !valueKey) {
+      await PromptInstance.getLabelKeyValue()
     }
 
     if (!argv.output) {

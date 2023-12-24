@@ -119,18 +119,18 @@ class Prompt {
   }
 
   async getTitle() {
-    const answers = await this.prompts([
+    const { title } = await this.prompts([
       {
         type: 'input',
         name: 'title',
-        message: '请输入枚举名字：',
+        message: '请输入枚举标题：',
         default: 'Status',
       },
     ])
-    return Promise.resolve(answers.title)
+    config.setArgv('title', title)
   }
 
-  async getLabelKeyValue(): Promise<{ labelKey: string; valueKey: string }> {
+  async getLabelKeyValue() {
     const questions = [
       {
         type: 'text',
@@ -146,23 +146,27 @@ class Prompt {
       },
     ]
 
-    const response = await this.prompts(questions)
-    return response
+    const { labelKey, valueKey } = await this.prompts<{ labelKey: string; valueKey: string }>(questions)
+    config.setArgv('labelKey', labelKey)
+    config.setArgv('valueKey', valueKey)
   }
 
   async promptOutPut(): Promise<void> {
+    const { output } = config.argv
+    const existOutput = typeof output !== 'undefined'
     const answers = await this.prompts<{ hasOutPutFile: boolean; output: string }>([
       {
         type: 'confirm',
         name: 'hasOutPutFile',
         message: '是否需要输出文件?',
         default: false,
+        when: () => !existOutput
       },
       {
         type: 'input',
         name: 'output',
         message: '请输入输出文件的路径:',
-        when: (answers) => answers.hasOutPutFile,
+        when: (answers) => answers.hasOutPutFile || existOutput,
         validate: async (input) => {
           const fullPath = path.resolve(input)
           const dirPath = path.dirname(fullPath)
@@ -180,7 +184,7 @@ class Prompt {
         },
       },
     ])
-    if (answers.hasOutPutFile) {
+    if (answers.hasOutPutFile || existOutput) {
       config.setArgv('output', answers.output)
     }
   }
