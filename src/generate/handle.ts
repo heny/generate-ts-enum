@@ -132,14 +132,8 @@ class EnumGenerator {
 
   async byFileGenerate(filePath) {
     const rootFilePath = path.resolve(process.cwd(), filePath)
-    // 检查文件是否存在
-    if (await fs.pathExists(rootFilePath)) {
-      console.log('找到了文件：', rootFilePath)
-      const content = await fs.readFile(rootFilePath, 'utf-8')
-      this.byStringGenerate(content)
-    } else {
-      console.log(chalk.red('该文件路径不存在：'), rootFilePath)
-    }
+    const content = await fs.readFile(rootFilePath, 'utf-8')
+    this.byStringGenerate(content)
   }
 }
 

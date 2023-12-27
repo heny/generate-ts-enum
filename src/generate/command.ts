@@ -1,6 +1,7 @@
 import path from 'path'
 import fs from 'fs-extra'
 import chalk from 'chalk'
+import { Argv } from '@src/constants'
 
 export default (yargs) => {
   return yargs
@@ -23,11 +24,6 @@ export default (yargs) => {
       alias: 'output',
       describe: '指定输出文件路径',
       type: 'string',
-    })
-    .option('bdf', {
-      alias: 'bdfanyi',
-      describe: '是否使用百度翻译',
-      type: 'boolean',
     })
     .option('labelKey', {
       describe: '要转换的label key',
@@ -64,17 +60,19 @@ export default (yargs) => {
       describe: '手动输入label value key',
       type: 'boolean',
     })
-    .check(async (argv) => {
+    .check(async (argv: Argv) => {
       // 校验输入文件
       if (argv.f) {
         if (path.extname(argv.f) !== '.json') {
           console.log(chalk.red('输入文件必须是一个 Json (.json) 文件'))
           process.exit(1)
         }
-        if (!(await fs.pathExists(argv.f))) {
-          console.log(chalk.red('输入的文件不存在, 请重新输入'))
+        const rootFilePath = path.resolve(process.cwd(), argv.f)
+        if (!(await fs.pathExists(rootFilePath))) {
+          console.log(chalk.red('输入的文件不存在, 请重新输入!', rootFilePath))
           process.exit(1)
         }
+        console.log(chalk.green('读取文件：'), rootFilePath)
       }
 
       // 校验输出文件

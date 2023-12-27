@@ -1,15 +1,21 @@
 type OutputType = 'label' | 'value' | 'mapping'
 
 export interface Argv {
+  a?: string
   array?: string
+
+  t: string
   title: string
+
+  f?: string
   file?: string
+
+  o?: string
   output?: string
+
   labelKey: string
   valueKey: string
   inputKey?: boolean
-  // 使用百度翻译
-  bdfanyi?: boolean
   // 生成的类型label,value,mapping
   type: OutputType[]
 }

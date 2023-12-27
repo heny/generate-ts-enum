@@ -1,6 +1,5 @@
 import PromptInstance from '../prompt'
 import GenerateInstance from './handle'
-import TranslateInstance from '../translate'
 import config from '../config'
 import { Argv } from '../constants'
 
@@ -34,10 +33,6 @@ class Executor {
     config.setStartTime(Date.now())
     config.setFullArgv(argv)
     await this.checkArgv(argv)
-
-    if (argv.bdfanyi) {
-      await TranslateInstance.getBdFanyiKey()
-    }
 
     await PromptInstance.promptOutputType()
 

@@ -4,7 +4,7 @@ import axios from 'axios'
 import config from './config'
 import chalk from 'chalk'
 import PromptInstance from './prompt'
-import { sleep, preLog } from './utils'
+import { sleep, preLog, debugLog } from './utils'
 
 type TranslateKey = 'googleFree' | 'baidu'
 
@@ -38,7 +38,8 @@ class Translate {
 		preLog(`开始谷歌翻译：${text}`)
 		return translate(text, { from, to })
 			.then(res => res.text)
-			.catch(() => {
+			.catch((err) => {
+				debugLog(err)
 				console.log(chalk.red('翻译失败，使用拼音转换!'))
 				this.translateStatus.googleFree = false
 				return ''

@@ -56,6 +56,19 @@ gte enum -t '测试生成' -f './test/input.json' -o './test/output.ts' --type l
 ## 使用百度翻译
 通过访问 https://api.fanyi.baidu.com/ 来创建自己的appid以及key，免费用户每日有5w字符免费翻译，个人认证用户每日有100w字符免费翻译
 
-得到appid以及key之后，通过添加 `--bdf` 来配置，只需要配置一次即可
+得到appid以及key之后，通过`gte write --bdf`来配置百度，只需要配置一次即可
 
-如果需要修改或删除自己的appid以及key，仅需要重新添加 `--bdf` 配置即可
+如果需要修改或删除自己的appid以及key，继续执行`gte write --bdf`即可
+
+## PlanList
+* [ ] 传入数组，生成枚举出来
+  command: `gte enum -a ['test', 'demo', 'hello']`
+    ```ts
+    export enum Test {
+      Test = 'TEST',
+      Demo = 'DEMO',
+      Hello = 'HELLO'
+    }
+    ```
+* [ ] 支持翻译功能
+* [ ] 接入其他翻译接口，比如有道，彩云翻译

@@ -1,5 +1,8 @@
 import chalk from 'chalk'
 import dayjs from 'dayjs'
+import NodeDebug from 'debug'
+
+export const debugLog = NodeDebug('gte')
 
 export function flat(arr) {
   return arr.reduce(function (prev, curr) {

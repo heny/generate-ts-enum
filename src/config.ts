@@ -3,6 +3,7 @@ import fs from 'fs-extra'
 import os from 'os'
 import { IConfig, Argv, Store, BaseConfig } from './constants'
 import chalk from 'chalk'
+import { debugLog } from './utils'
 
 class Config implements IConfig {
   private execStartTime: number
@@ -46,6 +47,7 @@ class Config implements IConfig {
       fs.writeJsonSync(filePath, { ...existingConfig, ...newConfig }, { spaces: 2 });
       console.log(chalk.green(`已更新到配置文件：${filePath}`), newConfig);
     } catch (err) {
+      debugLog(err)
       console.log(chalk.red(`写入配置文件时出错: ${err}`));
       process.exit(0)
     }
