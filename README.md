@@ -60,6 +60,20 @@ gte enum -t '测试生成' -f './test/input.json' -o './test/output.ts' --type l
 
 如果需要修改或删除自己的appid以及key，继续执行`gte write --bdf`即可
 
+## translate
+```bash
+gte translate 测试
+# 使用其他翻译
+gte translate 关闭 -y baidu
+```
+
+## 取变量名
+```bash
+gte name 功能测试
+# 使用其他翻译
+gte translate 关闭 -y baidu
+```
+
 ## PlanList
 * [ ] 传入数组，生成枚举出来
   command: `gte enum -a ['test', 'demo', 'hello']`
@@ -70,5 +84,10 @@ gte enum -t '测试生成' -f './test/input.json' -o './test/output.ts' --type l
       Hello = 'HELLO'
     }
     ```
-* [ ] 支持翻译功能
+* [x] 支持翻译功能
+* [x] 支持获取变量名
+  command: `gte name -n '生成枚举状态'`
 * [ ] 接入其他翻译接口，比如有道，彩云翻译
+  * [x] 接入彩云翻译
+  * [ ] 接入有道
+  * [ ] 接入deepl

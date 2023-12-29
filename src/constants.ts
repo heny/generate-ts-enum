@@ -20,6 +20,13 @@ export interface Argv {
   type: OutputType[]
 }
 
+export interface TranslateArgv {
+  query: string
+  from: string
+  to: string
+  type: TranslateKey
+}
+
 export interface IConfig {
   argv: Argv
 }
@@ -41,4 +48,5 @@ export interface BaseConfig {
 }
 
 export type TranslateKey = 'googleFree' | 'baidu' | 'caiyun'
+export const translateKeys: TranslateKey[] = ['googleFree', 'baidu', 'caiyun']
 export type CaiYunType = 'zh' | 'en' | 'jp'

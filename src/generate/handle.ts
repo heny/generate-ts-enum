@@ -23,16 +23,7 @@ class EnumGenerator {
     let result = ''
     const { translateType } = config.baseConfig
     if (TranslateInstance.translateAvalible) {
-      switch (translateType) {
-        case 'baidu':
-          result = await TranslateInstance.bdfanyi(str)
-          break
-        case 'caiyun':
-          result = await TranslateInstance.caiyunTranslate(str)
-          break
-        default:
-          result = await TranslateInstance.googleFreeTranslate(str)
-      }
+      const result = await TranslateInstance.byTypeTranslate(str, translateType)
       // 处理翻译失败的情况
       if (!result) {
         console.log(chalk.red('将使用拼音转换!'))

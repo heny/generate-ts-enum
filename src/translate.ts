@@ -7,10 +7,21 @@ import PromptInstance from './prompt'
 import { sleep, preLog, debugLog, to } from './utils'
 import { TranslateKey, CaiYunType, BaseConfig } from './constants'
 
-function CheckTranslate(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+/**
+ * 校验装饰器,使用类内部的checkTranslate
+ * 翻译的功能都需要调用一下该方法
+ */
+function CheckTranslate(_target: any, _propertyKey: string, descriptor: PropertyDescriptor) {
 	const originalMethod = descriptor.value;
 	descriptor.value = async function (...args: any[]) {
-		// @ts-ignore
+		// 第一个参数必须存在
+		const oneArg = args[0]
+		if (typeof oneArg !== 'string' || oneArg === '' || oneArg === undefined) {
+			console.log(chalk.red('第一个参数必须为string，并且必须存在!'))
+			return ''
+		}
+
+		// @ts-ignore 这里this是用的地方的this
 		const checkResult = await this.checkTranslate();
 		if (checkResult) return '';
 		return originalMethod.apply(this, args);
@@ -46,7 +57,6 @@ class Translate {
 			await sleep(1000)
 		}
 		this.firstTranslation = false
-
 	}
 
 	/**
@@ -71,10 +81,12 @@ class Translate {
 	 */
 	@CheckTranslate
 	async bdfanyi(text: string, from = 'zh', to = 'en'): Promise<string> {
-		const { appid, key } = config.baseConfig?.bdfinyi || {}
+		let { appid, key } = config.baseConfig?.bdfinyi || {}
 		if (!appid || !key) {
-			console.log(chalk.red('请配置百度翻译的 appid 和 key'))
-			process.exit(0)
+			console.log(chalk.red('请配置百度翻译的 appid 和 key：'))
+			const newConfig = await this.setBdFanyiKey()
+			appid = newConfig.appid
+			key = newConfig.key
 		}
 		const salt = new Date().getTime()
 		const sign = md5(`${appid}${text}${salt}${key}`)
@@ -106,31 +118,13 @@ class Translate {
 		}
 	}
 
-	// 写入百度翻译配置
-	async setBdFanyiKey(): Promise<BaseConfig['bdfinyi']> {
-		const questions = await PromptInstance.prompts<BaseConfig['bdfinyi']>([
-			{
-				type: 'text',
-				name: 'appid',
-				message: '请输入百度appid：',
-			},
-			{
-				type: 'text',
-				name: 'key',
-				message: '请输入百度密钥：',
-			},
-		])
-		config.setBaseConfig('bdfinyi', questions)
-		return questions
-	}
-
 	/**
 	 * @name 彩云翻译
 	 * @param source  要翻译的文本, 传入数组则批量翻译
 	 * @returns 
 	 */
 	@CheckTranslate
-	async caiyunTranslate(source, from: CaiYunType = 'zh', target = 'en') {
+	async caiyunTranslate(source, from: CaiYunType = 'zh', target: CaiYunType = 'en') {
 		// 如果没配置token则使用测试的token
 		const token = config.baseConfig.caiyun || '3975l6lr5pcbvidl6jl2'
 		const url = "http://api.interpreter.caiyunai.com/v1/translator";
@@ -158,6 +152,24 @@ class Translate {
 		return response.data["target"];
 	}
 
+	// 写入百度翻译配置
+	async setBdFanyiKey(): Promise<BaseConfig['bdfinyi']> {
+		const questions = await PromptInstance.prompts<BaseConfig['bdfinyi']>([
+			{
+				type: 'text',
+				name: 'appid',
+				message: '请输入百度appid：',
+			},
+			{
+				type: 'text',
+				name: 'key',
+				message: '请输入百度密钥：',
+			},
+		])
+		config.setBaseConfig('bdfinyi', questions)
+		return questions
+	}
+
 	// 写入caiyun token
 	async setCaiyunToken(): Promise<string> {
 		const questions = await PromptInstance.prompt({
@@ -174,12 +186,33 @@ class Translate {
 			{
 				type: 'list',
 				message: '请选择翻译类型：',
-				choices: ['googleFree', 'baidu', 'caiyun'],
+				choices: [
+					{ name: '谷歌免费翻译', value: 'googleFree' },
+					{ name: '百度翻译(需要自己提供token)', value: 'baidu' },
+					{ name: '彩云小译(有测试token)', value: 'caiyun' },
+				],
 				default: base.translateType
 			},
 		)
 		config.setBaseConfig('translateType', questions)
 		return questions
+	}
+
+	async byTypeTranslate(text: string, type?: TranslateKey, from?, to?) {
+		let result = ''
+		switch (type) {
+			case 'baidu':
+				result = await this.bdfanyi(text, from, to)
+				break
+			case 'googleFree':
+				result = await this.googleFreeTranslate(text, from, to)
+				break
+			// 默认使用caiyun
+			case 'caiyun':
+			default:
+				result = await this.caiyunTranslate(text, from as CaiYunType, to as CaiYunType);
+		}
+		return result
 	}
 }
 
