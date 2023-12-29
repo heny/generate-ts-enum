@@ -29,6 +29,14 @@ class Prompt {
     })
   }
 
+  async prompt<T = string>(option: Omit<QuestionCollection, 'name'>): Promise<T> {
+    const answer = await inquirer.prompt({
+      ...option,
+      name: 'result',
+    });
+    return answer.result
+  }
+
   async byPromptGetData() {
     console.log(
       chalk.blue(

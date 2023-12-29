@@ -27,9 +27,18 @@ export interface IConfig {
 export interface Store { }
 
 export interface BaseConfig {
+  // 使用什么翻译
+  translateType: TranslateKey;
+
   // 百度翻译配置
-  bdfinyi?: {
+  bdfinyi: {
     appid?: string
     key?: string
   }
+
+  // 彩云翻译配置
+  caiyun: string
 }
+
+export type TranslateKey = 'googleFree' | 'baidu' | 'caiyun'
+export type CaiYunType = 'zh' | 'en' | 'jp'

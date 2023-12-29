@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "rebuild": "rm -rf dist && tsc",
-    "gte": "npm run rebuild && node ./bin/gte enum",
+    "gte": "npm run rebuild && node ./bin/gte",
     "one": "npm run rebuild &&  node ./bin/gte enum -f ./test/input.json -t 测试生成 -o ./test/output.ts --type label value mapping --labelKey label --valueKey value",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "publish": "npm run changelog && git-auto publish"

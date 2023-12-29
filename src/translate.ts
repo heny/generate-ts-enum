@@ -4,43 +4,62 @@ import axios from 'axios'
 import config from './config'
 import chalk from 'chalk'
 import PromptInstance from './prompt'
-import { sleep, preLog, debugLog } from './utils'
+import { sleep, preLog, debugLog, to } from './utils'
+import { TranslateKey, CaiYunType, BaseConfig } from './constants'
 
-type TranslateKey = 'googleFree' | 'baidu'
+function CheckTranslate(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+	const originalMethod = descriptor.value;
+	descriptor.value = async function (...args: any[]) {
+		// @ts-ignore
+		const checkResult = await this.checkTranslate();
+		if (checkResult) return '';
+		return originalMethod.apply(this, args);
+	};
+	return descriptor;
+}
 
 class Translate {
 	private firstTranslation: boolean = true;
+	// 翻译状态是否成功
 	private translateStatus: { [key in TranslateKey]: boolean } = {
 		googleFree: true,
-		baidu: true
+		baidu: true,
+		caiyun: true
+	}
+
+	// 是否可翻译
+	get translateAvalible() {
+		// 只要有一个翻译key为false，就终止翻译，因为一次只能使用一种翻译
+		const result = Object.values(this.translateStatus).every(Boolean)
+		if (!result && this.firstTranslation) {
+			this.firstTranslation = false
+			console.log(chalk.red('翻译失败，使用拼音转换!'))
+		}
+		return result
 	}
 
 	// return true 终止翻译
 	async checkTranslate(): Promise<boolean | void> {
+		if (!this.translateAvalible) return true
 		if (!this.firstTranslation) {
 			// 仅在第二次及以后的调用使用 限制翻译速率 防止被拉黑ip
 			await sleep(1000)
 		}
 		this.firstTranslation = false
 
-		if (!this.translateStatus.baidu || !this.translateStatus.googleFree) {
-			return true
-		}
 	}
 
 	/**
 	 * 谷歌翻译 没有限制
 	 * @returns 
 	 */
+	@CheckTranslate
 	async googleFreeTranslate(text: string, from = 'zh', to = 'en'): Promise<string> {
-		const checkResult = await this.checkTranslate()
-		if (checkResult) return ''
 		preLog(`开始谷歌翻译：${text}`)
 		return translate(text, { from, to })
 			.then(res => res.text)
 			.catch((err) => {
 				debugLog(err)
-				console.log(chalk.red('翻译失败，使用拼音转换!'))
 				this.translateStatus.googleFree = false
 				return ''
 			})
@@ -50,10 +69,9 @@ class Translate {
 	 * 百度翻译 
 	 * @returns 翻译失败返回空字符串
 	 */
+	@CheckTranslate
 	async bdfanyi(text: string, from = 'zh', to = 'en'): Promise<string> {
-		const checkResult = await this.checkTranslate()
-		if (checkResult) return ''
-		const { appid, key } = config.baseConfig.bdfinyi!
+		const { appid, key } = config.baseConfig?.bdfinyi || {}
 		if (!appid || !key) {
 			console.log(chalk.red('请配置百度翻译的 appid 和 key'))
 			process.exit(0)
@@ -77,11 +95,11 @@ class Translate {
 				config.setBaseConfig('bdfinyi', {})
 			}
 
-			console.log(chalk.red('翻译失败，使用拼音转换!'))
+			// console.log(chalk.red('翻译失败，使用拼音转换!'))
 			this.translateStatus.baidu = false
 			return ''
 		} catch (error: any) {
-			console.log(chalk.red(`翻译失败：${error}, 将使用拼音转换!`))
+			console.log(chalk.red(`翻译失败：${error}!`))
 			config.setBaseConfig('bdfinyi', {})
 			this.translateStatus.baidu = false
 			return ''
@@ -89,8 +107,8 @@ class Translate {
 	}
 
 	// 写入百度翻译配置
-	async getBdFanyiKey(): Promise<void> {
-		const questions = await PromptInstance.prompts<{ appid: string; key: string }>([
+	async setBdFanyiKey(): Promise<BaseConfig['bdfinyi']> {
+		const questions = await PromptInstance.prompts<BaseConfig['bdfinyi']>([
 			{
 				type: 'text',
 				name: 'appid',
@@ -103,6 +121,65 @@ class Translate {
 			},
 		])
 		config.setBaseConfig('bdfinyi', questions)
+		return questions
+	}
+
+	/**
+	 * @name 彩云翻译
+	 * @param source  要翻译的文本, 传入数组则批量翻译
+	 * @returns 
+	 */
+	@CheckTranslate
+	async caiyunTranslate(source, from: CaiYunType = 'zh', target = 'en') {
+		// 如果没配置token则使用测试的token
+		const token = config.baseConfig.caiyun || '3975l6lr5pcbvidl6jl2'
+		const url = "http://api.interpreter.caiyunai.com/v1/translator";
+
+		const payload = {
+			"source": source,
+			"trans_type": `${from}2${target}`,
+			"request_id": "demo",
+			"detect": true,
+		}
+		const headers = {
+			"content-type": "application/json",
+			"x-authorization": "token " + token,
+		};
+		const [error, response] = await to(axios.post(url, payload, { headers: headers }))
+
+		// 失败
+		if (error) {
+			this.translateStatus.caiyun = false;
+			console.log(chalk.red(`翻译失败：${error}!`))
+			config.setBaseConfig('caiyun', '')
+			return ''
+		}
+
+		return response.data["target"];
+	}
+
+	// 写入caiyun token
+	async setCaiyunToken(): Promise<string> {
+		const questions = await PromptInstance.prompt({
+			message: '请输入彩云token：'
+		})
+		config.setBaseConfig('caiyun', questions)
+		return questions
+	}
+
+	// 使用什么翻译
+	async setTranslateType(): Promise<TranslateKey> {
+		const base = config.baseConfig
+		const questions = await PromptInstance.prompt<TranslateKey>(
+			{
+				type: 'list',
+				message: '请选择翻译类型：',
+				choices: ['googleFree', 'baidu', 'caiyun'],
+				default: base.translateType
+			},
+		)
+		config.setBaseConfig('translateType', questions)
+		return questions
 	}
 }
 

@@ -20,12 +20,23 @@ class EnumGenerator {
       return toUpperCase(str.split(' '))
     }
 
-    const base = config.baseConfig
-    let result
-    if (base.bdfinyi?.appid && base.bdfinyi.key) {
-      result = await TranslateInstance.bdfanyi(str)
-    } else {
-      result = await TranslateInstance.googleFreeTranslate(str)
+    let result = ''
+    const { translateType } = config.baseConfig
+    if (TranslateInstance.translateAvalible) {
+      switch (translateType) {
+        case 'baidu':
+          result = await TranslateInstance.bdfanyi(str)
+          break
+        case 'caiyun':
+          result = await TranslateInstance.caiyunTranslate(str)
+          break
+        default:
+          result = await TranslateInstance.googleFreeTranslate(str)
+      }
+      // 处理翻译失败的情况
+      if (!result) {
+        console.log(chalk.red('将使用拼音转换!'))
+      }
     }
 
     if (!result) {

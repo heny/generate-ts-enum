@@ -11,15 +11,33 @@ yargs(hideBin(process.argv))
   .command<Argv>('enum', '生成枚举和映射', generateCommands, ExecutorInstance.execFn)
   .command('write', '写入配置',
     (yargs) => {
-      return yargs.option('bdf', {
-        alias: 'bdfanyi',
-        describe: '配置百度翻译key',
-        type: 'boolean'
-      })
+      return yargs
+        .option('bdf', {
+          alias: 'bdfanyi',
+          describe: '配置百度翻译key',
+          type: 'boolean'
+        })
+        .option('cy', {
+          alias: 'caiyun',
+          describe: '配置彩云token',
+          type: 'boolean'
+        })
+        .option('t', {
+          alias: 'type',
+          describe: '选择使用翻译类型',
+          type: 'string',
+          default: 'googleFree'
+        })
     },
     async function (argv) {
       if (argv.bdf) {
-        await TranslateInstance.getBdFanyiKey()
+        await TranslateInstance.setBdFanyiKey()
+      }
+      if (argv.caiyun) {
+        await TranslateInstance.setCaiyunToken()
+      }
+      if (argv.type) {
+        await TranslateInstance.setTranslateType();
       }
     }
   )

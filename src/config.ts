@@ -17,7 +17,7 @@ class Config implements IConfig {
   }
 
   // 获取用户配置 ~/.generate-ts-gte.json 或者项目目录下
-  get baseConfig(): BaseConfig {
+  get baseConfig(): Partial<BaseConfig> {
     const filePath = this.baseConfigPath
 
     try {
