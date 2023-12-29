@@ -1,3 +1,15 @@
+## [0.0.6](https://github.com/heny/generate-ts-enum/compare/v0.0.5...v0.0.6) (2023-12-29)
+
+
+### Features
+
+* 记录0.0.5日志 ([a5c2df8](https://github.com/heny/generate-ts-enum/commit/a5c2df80e994d7fe33b95b6c7ad1dc40a44f6330))
+* 加入彩云小译 ([14aee3f](https://github.com/heny/generate-ts-enum/commit/14aee3fc4882e74c844d9894264eb947e970ede0))
+* 添加translate和name命令 ([aee8870](https://github.com/heny/generate-ts-enum/commit/aee8870623f1eaf6b9eb37d7ca53a2ef27ff600c))
+* 新增debug查看错误信息,删除enum命令百度翻译 ([beb60a7](https://github.com/heny/generate-ts-enum/commit/beb60a7bc4fc509b141d253fb97d9ddb74a15cd9))
+
+
+
 ## [0.0.5](https://github.com/heny/generate-ts-enum/compare/v0.0.4...v0.0.5) (2023-12-24)
 
 
