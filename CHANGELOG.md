@@ -1,3 +1,12 @@
+## [0.0.7-alpha.0](https://github.com/heny/generate-ts-enum/compare/v0.0.6...v0.0.7-alpha.0) (2024-01-04)
+
+
+### Features
+
+* 当翻译不传from时默认给auto ([f7e4eb2](https://github.com/heny/generate-ts-enum/commit/f7e4eb2de314bee23ca899636bee7e58f5731522))
+
+
+
 ## [0.0.6](https://github.com/heny/generate-ts-enum/compare/v0.0.5...v0.0.6) (2023-12-29)
 
 
