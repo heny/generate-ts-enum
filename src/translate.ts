@@ -81,6 +81,7 @@ class Translate {
 	 */
 	@CheckTranslate
 	async bdfanyi(text: string, from = 'zh', to = 'en'): Promise<string> {
+		const isEnum = config.getStore('command')
 		let { appid, key } = config.baseConfig?.bdfinyi || {}
 		if (!appid || !key) {
 			console.log(chalk.red('请配置百度翻译的 appid 和 key：'))
@@ -94,7 +95,7 @@ class Translate {
 		const url = `https://fanyi-api.baidu.com/api/trans/vip/translate?q=${q}&from=${from}&to=${to}&appid=${appid}&salt=${salt}&sign=${sign}`
 
 		try {
-			preLog(`开始百度翻译：${text}`)
+			if (isEnum === 'enum') preLog(`开始百度翻译：${text}`)
 			const { data } = await axios.get(url)
 
 			if (data?.trans_result) {
@@ -104,7 +105,7 @@ class Translate {
 			// 输出错误信息
 			if (data.error_msg) {
 				console.log(chalk.bgRed.white(`翻译失败：`), data)
-				config.setBaseConfig('bdfinyi', {})
+				// config.setBaseConfig('bdfinyi', {})
 			}
 
 			// console.log(chalk.red('翻译失败，使用拼音转换!'))
@@ -112,7 +113,7 @@ class Translate {
 			return ''
 		} catch (error: any) {
 			console.log(chalk.red(`翻译失败：${error}!`))
-			config.setBaseConfig('bdfinyi', {})
+			// config.setBaseConfig('bdfinyi', {})
 			this.translateStatus.baidu = false
 			return ''
 		}
@@ -125,6 +126,7 @@ class Translate {
 	 */
 	@CheckTranslate
 	async caiyunTranslate(source, from: CaiYunType = 'zh', target: CaiYunType = 'en') {
+		const isEnum = config.getStore('command')
 		// 如果没配置token则使用测试的token
 		const token = config.baseConfig.caiyun || '3975l6lr5pcbvidl6jl2'
 		const url = "http://api.interpreter.caiyunai.com/v1/translator";
@@ -139,13 +141,15 @@ class Translate {
 			"content-type": "application/json",
 			"x-authorization": "token " + token,
 		};
+		if (isEnum === 'enum') preLog(`开始彩云翻译：${source}`)
 		const [error, response] = await to(axios.post(url, payload, { headers: headers }))
 
 		// 失败
 		if (error) {
 			this.translateStatus.caiyun = false;
-			console.log(chalk.red(`翻译失败：${error}!`))
-			config.setBaseConfig('caiyun', '')
+			// @ts-ignore
+			console.log(chalk.red(`翻译失败：`), error.response.data)
+			// config.setBaseConfig('caiyun', '')
 			return ''
 		}
 

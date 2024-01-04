@@ -33,6 +33,7 @@ yargs(hideBin(process.argv))
         })
     },
     async function (argv) {
+      config.setStore('command', 'write')
       if (argv.bdf) {
         await TranslateInstance.setBdFanyiKey()
       }
@@ -75,7 +76,12 @@ yargs(hideBin(process.argv))
           return true
         }),
     async function (argv) {
-      const result = await TranslateInstance.byTypeTranslate(argv.query, argv.type, argv.from, argv.to)
+      let from = argv.from
+      let to = argv.to
+      // 目标语言不为auto
+      if (to && !from) from = 'auto'
+      config.setStore('command', 'translate')
+      const result = await TranslateInstance.byTypeTranslate(argv.query, argv.type, from, to)
       console.log(chalk.green(result))
     }
   )
@@ -100,7 +106,8 @@ yargs(hideBin(process.argv))
           return true
         }),
     async (argv) => {
-      const result = await TranslateInstance.byTypeTranslate(argv.query, argv.type, argv.from, argv.to)
+      config.setStore('command', 'name')
+      const result = await TranslateInstance.byTypeTranslate(argv.query, argv.type)
       console.log(chalk.green(toUpperCase(result.split(' '))))
     }
   )

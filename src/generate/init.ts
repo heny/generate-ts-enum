@@ -30,6 +30,7 @@ class Executor {
   }
 
   async execFn(argv: Argv) {
+    config.setStore('command', 'enum')
     config.setStartTime(Date.now())
     config.setFullArgv(argv)
     await this.checkArgv(argv)

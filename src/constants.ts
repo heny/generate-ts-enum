@@ -31,7 +31,9 @@ export interface IConfig {
   argv: Argv
 }
 
-export interface Store { }
+export interface Store {
+  command?: 'translate' | 'name' | 'enum' | 'write'
+}
 
 export interface BaseConfig {
   // 使用什么翻译
